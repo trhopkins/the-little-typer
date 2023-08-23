@@ -89,7 +89,7 @@
 
 ; 83:52
 (claim gauss
-  (-> Nat Nat
+  (-> Nat
     Nat))
 (define gauss
   (lambda (n)
