@@ -18,9 +18,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; 112:20
-(claim rugbrod
+(claim rugbrød
   (List Atom))
-(define rugbrod
+(define rugbrød
   (:: 'rye-flour
     (:: 'rye-kernels
       (:: 'water
@@ -190,3 +190,4 @@
     (reverse Atom
       (:: 'plate
         (:: 'rye-bread nil)))))
+
