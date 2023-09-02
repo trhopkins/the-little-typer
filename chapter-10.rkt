@@ -8,21 +8,30 @@
     (vec:: 'understood-induction
       (vec:: 'built-function vecnil))))
 
-The Law of Sigma
-The expression
-  (Sigma ((x A))
-    D)
-is a type when A is a type, and D is a type if x is an A.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; The Law of Sigma
+;;
+;; The expression
+;;   (Sigma ((x A))
+;;     D)
+;; is a type when A is a type, and D is a type if x is an A.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-The Commandment of cons
-If p is a
-  (Sigma ((x A))
-    D),
-then p is the same as
-  (cons (car p) (cdr p)).
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; The Commandment of cons
+;;
+;; If p is a
+;;   (Sigma ((x A))
+;;     D),
+;; then p is the same as
+;;   (cons (car p) (cdr p)).
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-Use a Specific Type for Correctness
-Specific types can rule out foolish definitions.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Use a Specific Type for Correctness
+;;
+;; Specific types can rule out foolish definitions.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; 233:47
 (claim mot-replicate
