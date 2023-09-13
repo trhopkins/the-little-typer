@@ -1,54 +1,54 @@
 #lang pie
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Sameness
-;;
-;;If a "same as" chart could show that two expressions are the same, then this
-;;fact can be used anywhere without further justification. "Same As" charts are
-;;only to help build understanding.
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Sameness                                                                     ;;
+;;                                                                              ;;
+;;If a "same as" chart could show that two expressions are the same, then this  ;;
+;;fact can be used anywhere without further justification. "Same As" charts are ;;
+;;only to help build understanding.                                             ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Total Function
-;;
-;; A function that always assigns a value to every possible argument is called
-;; a total function.
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Total Function                                                               ;;
+;;                                                                              ;;
+;; A function that always assigns a value to every possible argument is called  ;;
+;; a total function.                                                            ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; The Law of iter-Nat
-;;
-;; If target is a Nat, base is an X, and step is an
-;;   (-> X
-;;     X),
-;; then
-;;   (iter-Nat target
-;;     base
-;;     step)
-;; is an X.
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; The Law of iter-Nat                                                          ;;
+;;                                                                              ;;
+;; If target is a Nat, base is an X, and step is an                             ;;
+;;   (-> X                                                                      ;;
+;;     X),                                                                      ;;
+;; then                                                                         ;;
+;;   (iter-Nat target                                                           ;;
+;;     base                                                                     ;;
+;;     step)                                                                    ;;
+;; is an X.                                                                     ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; The First Commandment of iter-Nat
-;;
-;; If (iter-Nat zero
-;;      base
-;;      step)
-;; is an X, then it is the same X as base.
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; The First Commandment of iter-Nat                                            ;;
+;;                                                                              ;;
+;; If (iter-Nat zero                                                            ;;
+;;      base                                                                    ;;
+;;      step)                                                                   ;;
+;; is an X, then it is the same X as base.                                      ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; The Second Commandment of iter-Nat
-;;
-;; If (iter-Nat (add1 n)
-;;      base
-;;      step)
-;; is an X, then it is the same X as
-;;   (step
-;;     (iter-Nat n
-;;       base
-;;       step)).
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; The Second Commandment of iter-Nat                                           ;;
+;;                                                                              ;;
+;; If (iter-Nat (add1 n)                                                        ;;
+;;      base                                                                    ;;
+;;      step)                                                                   ;;
+;; is an X, then it is the same X as                                            ;;
+;;   (step                                                                      ;;
+;;     (iter-Nat n                                                              ;;
+;;       base                                                                   ;;
+;;       step)).                                                                ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; 75:24
 (claim +
@@ -116,38 +116,38 @@
       ; (make-step-* rhs)
       (step-* rhs))))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; The Law of rec-Nat
-;; 
-;; If target is a Nat, base is an X, and step is an
-;;   (-> Nat X
-;;     X)
-;; then
-;;   (rec-Nat target
-;;      base
-;;      step)
-;; is an X.
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; The Law of rec-Nat                                                           ;;
+;;                                                                              ;;
+;; If target is a Nat, base is an X, and step is an                             ;;
+;;   (-> Nat X                                                                  ;;
+;;     X)                                                                       ;;
+;; then                                                                         ;;
+;;   (rec-Nat target                                                            ;;
+;;      base                                                                    ;;
+;;      step)                                                                   ;;
+;; is an X.                                                                     ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; The First Commandment of rec-Nat
-;;
-;; If (rec-Nat zero
-;;      base
-;;      step)
-;; is an X, then it is the same X as base.
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; The First Commandment of rec-Nat                                             ;;
+;;                                                                              ;;
+;; If (rec-Nat zero                                                             ;;
+;;      base                                                                    ;;
+;;      step)                                                                   ;;
+;; is an X, then it is the same X as base.                                      ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; The Second Commandment of rec-Nat
-;;
-;; If (rec-Nat (add1 n)
-;;      base
-;;      step)
-;; is an X, then it is the same X as
-;;   (step n
-;;     (rec-Nat n
-;;       base
-;;       step)).
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; The Second Commandment of rec-Nat                                            ;;
+;;                                                                              ;;
+;; If (rec-Nat (add1 n)                                                         ;;
+;;      base                                                                    ;;
+;;      step)                                                                   ;;
+;; is an X, then it is the same X as                                            ;;
+;;   (step n                                                                    ;;
+;;     (rec-Nat n                                                               ;;
+;;       base                                                                   ;;
+;;       step)).                                                                ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

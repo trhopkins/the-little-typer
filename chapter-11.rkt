@@ -34,53 +34,53 @@
   (:: 'coffee
     (:: 'cocoa nil)))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; The Law of ind-Vec
-;;
-;; If n is a Nat, target is a (Vec E n), mot is a
-;;   (Pi ((k Nat))
-;;     (-> (Vec E k)
-;;       U)),
-;; base is a (mot zero vecnil), and step is a
-;;   (Pi ((k Nat)
-;;        (h E)
-;;        (t (Vec E k)))
-;;     (-> (mot k t)
-;;       (mot (add1 k) (vec:: h t))))
-;; then
-;;   (ind-Vec n target
-;;     mot
-;;     base
-;;     step)
-;; is a (mot n target).
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; The Law of ind-Vec                                                           ;;
+;;                                                                              ;;
+;; If n is a Nat, target is a (Vec E n), mot is a                               ;;
+;;   (Pi ((k Nat))                                                              ;;
+;;     (-> (Vec E k)                                                            ;;
+;;       U)),                                                                   ;;
+;; base is a (mot zero vecnil), and step is a                                   ;;
+;;   (Pi ((k Nat)                                                               ;;
+;;        (h E)                                                                 ;;
+;;        (t (Vec E k)))                                                        ;;
+;;     (-> (mot k t)                                                            ;;
+;;       (mot (add1 k) (vec:: h t))))                                           ;;
+;; then                                                                         ;;
+;;   (ind-Vec n target                                                          ;;
+;;     mot                                                                      ;;
+;;     base                                                                     ;;
+;;     step)                                                                    ;;
+;; is a (mot n target).                                                         ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; The First Commandment of ind-Vec
-;;
-;; The ind-Vec-expression
-;;   (ind-Vec zero vecnil
-;;     mot
-;;     base
-;;     step)
-;; is the same (mot zero vecnil) as base.
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; The First Commandment of ind-Vec                                             ;;
+;;                                                                              ;;
+;; The ind-Vec-expression                                                       ;;
+;;   (ind-Vec zero vecnil                                                       ;;
+;;     mot                                                                      ;;
+;;     base                                                                     ;;
+;;     step)                                                                    ;;
+;; is the same (mot zero vecnil) as base.                                       ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; The Second Commandment of ind-Vec
-;;
-;; The ind-Vec-expression
-;;   (ind-Vec (add1 n) (vec:: e es)
-;;     mot
-;;     base
-;;     step)
-;; is the same (mot (add1 n) (vec:: e es)) as
-;;   (step n e es
-;;     (ind-Vec n es
-;;       mot
-;;       base
-;;       step)).
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; The Second Commandment of ind-Vec                                            ;;
+;;                                                                              ;;
+;; The ind-Vec-expression                                                       ;;
+;;   (ind-Vec (add1 n) (vec:: e es)                                             ;;
+;;     mot                                                                      ;;
+;;     base                                                                     ;;
+;;     step)                                                                    ;;
+;; is the same (mot (add1 n) (vec:: e es)) as                                   ;;
+;;   (step n e es                                                               ;;
+;;     (ind-Vec n es                                                            ;;
+;;       mot                                                                    ;;
+;;       base                                                                   ;;
+;;       step)).                                                                ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; 251:23
 (claim mot-vec-append
@@ -238,12 +238,12 @@
     (lambda (treats=)
       (cong treats= (length Atom)))))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; When in Doubt, Evaluate
-;;
-;; Gain insight by finding the values of expressions in types working out
-;; examples in "same-as" charts.
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; When in Doubt, Evaluate                                                      ;;
+;;                                                                              ;;
+;; Gain insight by finding the values of expressions in types working out       ;;
+;; examples in "same-as" charts.                                                ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (claim ::-func
   (Pi ((E U))

@@ -15,26 +15,26 @@
       (lambda (n-1)
         (+ 1)))))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; The Law of =
-;;
-;; An expression
-;;   (= X from to)
-;; is a type if X is a type, from is an X, and to is an X.
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; The Law of =                                                                 ;;
+;;                                                                              ;;
+;; An expression                                                                ;;
+;;   (= X from to)                                                              ;;
+;; is a type if X is a type, from is an X, and to is an X.                      ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Reading FROM and TO as Nouns
-;;
-;; Because from and to are convenient names, the corresponding parts of an
-;; =-expression are referred to as the FROM and the TO.
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Reading FROM and TO as Nouns                                                 ;;
+;;                                                                              ;;
+;; Because from and to are convenient names, the corresponding parts of an      ;;
+;; =-expression are referred to as the FROM and the TO.                         ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; The Law of same
-;;
-;; The expression (same e) is an (= X e e) if e is an X.
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; The Law of same                                                              ;;
+;;                                                                              ;;
+;; The expression (same e) is an (= X e e) if e is an X.                        ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; 180:41
 (claim +1=add1
@@ -44,13 +44,13 @@
   (lambda (n)
     (same (add1 n))))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Neutral Expressions
-;;
-;; Variables that are not defined are neutral. If the target of an eliminator
-;; expression is neutral, then the eliminator expression is neutral. Thus,
-;; values are not neutral.
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Neutral Expressions                                                          ;;
+;;                                                                              ;;
+;; Variables that are not defined are neutral. If the target of an eliminator   ;;
+;; expression is neutral, then the eliminator expression is neutral. Thus,      ;;
+;; values are not neutral.                                                      ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; 185:59
 (claim base-incr=add1
@@ -66,34 +66,34 @@
   (lambda (n)
     (= Nat (incr n) (add1 n))))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; "If" and "Then" as Types
-;;
-;; The expression
-;;   (-> X
-;;     Y)
-;; can be read as the statement,
-;;   "if X then Y."
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; "If" and "Then" as Types                                                     ;;
+;;                                                                              ;;
+;; The expression                                                               ;;
+;;   (-> X                                                                      ;;
+;;     Y)                                                                       ;;
+;; can be read as the statement,                                                ;;
+;;   "if X then Y."                                                             ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Observation about incr
-;;
-;; No matter which Nat n is,
-;;   (incr (add1 n))
-;; is the same Nat as
-;;   (add1 (incr n)).
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Observation about incr                                                       ;;
+;;                                                                              ;;
+;; No matter which Nat n is,                                                    ;;
+;;   (incr (add1 n))                                                            ;;
+;; is the same Nat as                                                           ;;
+;;   (add1 (incr n)).                                                           ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; The Law of cong
-;;
-;; If f is an 
-;;   (-> X
-;;     Y)
-;; and target is an (= X from to),
-;; then (cong target f) is an (= Y (f from) (f to)).
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; The Law of cong                                                              ;;
+;;                                                                              ;;
+;; If f is an                                                                   ;;
+;;   (-> X                                                                      ;;
+;;     Y)                                                                       ;;
+;; and target is an (= X from to),                                              ;;
+;; then (cong target f) is an (= Y (f from) (f to)).                            ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; 191:80
 (claim step-incr=add1
@@ -120,17 +120,17 @@
       base-incr=add1
       step-incr=add1)))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; The Commandment of cong
-;;
-;; If x is an X, and f is an
-;;   (-> X
-;;     Y),
-;; then (cong (same x) f) is the same
-;;   (= Y (f x) (f x))
-;; as
-;;   (same (f x)).
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; The Commandment of cong                                                      ;;
+;;                                                                              ;;
+;; If x is an X, and f is an                                                    ;;
+;;   (-> X                                                                      ;;
+;;     Y),                                                                      ;;
+;; then (cong (same x) f) is the same                                           ;;
+;;   (= Y (f x) (f x))                                                          ;;
+;; as                                                                           ;;
+;;   (same (f x)).                                                              ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; 195:90
 (claim sandwich

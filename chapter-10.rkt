@@ -8,30 +8,30 @@
     (vec:: 'understood-induction
       (vec:: 'built-function vecnil))))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; The Law of Sigma
-;;
-;; The expression
-;;   (Sigma ((x A))
-;;     D)
-;; is a type when A is a type, and D is a type if x is an A.
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; The Law of Sigma                                                             ;;
+;;                                                                              ;;
+;; The expression                                                               ;;
+;;   (Sigma ((x A))                                                             ;;
+;;     D)                                                                       ;;
+;; is a type when A is a type, and D is a type if x is an A.                    ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; The Commandment of cons
-;;
-;; If p is a
-;;   (Sigma ((x A))
-;;     D),
-;; then p is the same as
-;;   (cons (car p) (cdr p)).
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; The Commandment of cons                                                      ;;
+;;                                                                              ;;
+;; If p is a                                                                    ;;
+;;   (Sigma ((x A))                                                             ;;
+;;     D),                                                                      ;;
+;; then p is the same as                                                        ;;
+;;   (cons (car p) (cdr p)).                                                    ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Use a Specific Type for Correctness
-;;
-;; Specific types can rule out foolish definitions.
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Use a Specific Type for Correctness                                          ;;
+;;                                                                              ;;
+;; Specific types can rule out foolish definitions.                             ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; 233:47
 (claim mot-replicate
@@ -67,52 +67,52 @@
         vecnil
         (step-replicate E e)))))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; The Law of ind-List
-;;
-;; If target is a (List E),
-;; mot is an
-;;   (-> (List E)
-;;     U),
-;; base is a (mot nil), and step is a
-;;   (Pi ((e E)
-;;        (es (List E)))
-;;     (-> (mot es)
-;;       (mot (:: e es))))
-;; then
-;;   (ind-List target
-;;     mot
-;;     base
-;;     step)
-;; is a (mot target).
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; The Law of ind-List                                                          ;;
+;;                                                                              ;;
+;; If target is a (List E),                                                     ;;
+;; mot is an                                                                    ;;
+;;   (-> (List E)                                                               ;;
+;;     U),                                                                      ;;
+;; base is a (mot nil), and step is a                                           ;;
+;;   (Pi ((e E)                                                                 ;;
+;;        (es (List E)))                                                        ;;
+;;     (-> (mot es)                                                             ;;
+;;       (mot (:: e es))))                                                      ;;
+;; then                                                                         ;;
+;;   (ind-List target                                                           ;;
+;;     mot                                                                      ;;
+;;     base                                                                     ;;
+;;     step)                                                                    ;;
+;; is a (mot target).                                                           ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; The First Commandment of ind-List
-;;
-;; The ind-List-expression
-;;   (ind-List nil
-;;     mot
-;;     base
-;;     step)
-;; is the same (mot nil) as base.
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; The First Commandment of ind-List                                            ;;
+;;                                                                              ;;
+;; The ind-List-expression                                                      ;;
+;;   (ind-List nil                                                              ;;
+;;     mot                                                                      ;;
+;;     base                                                                     ;;
+;;     step)                                                                    ;;
+;; is the same (mot nil) as base.                                               ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; The Second Commandment of ind-List
-;;
-;; The ind-List-expression
-;;   (ind-List (:: e es)
-;;     mot
-;;     base
-;;     step)
-;; is the same (mot (:: e es)) as
-;;   (step e es
-;;     (ind-List es
-;;       mot
-;;       base
-;;       step)).
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; The Second Commandment of ind-List                                           ;;
+;;                                                                              ;;
+;; The ind-List-expression                                                      ;;
+;;   (ind-List (:: e es)                                                        ;;
+;;     mot                                                                      ;;
+;;     base                                                                     ;;
+;;     step)                                                                    ;;
+;; is the same (mot (:: e es)) as                                               ;;
+;;   (step e es                                                                 ;;
+;;     (ind-List es                                                             ;;
+;;       mot                                                                    ;;
+;;       base                                                                   ;;
+;;       step)).                                                                ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; 240:70
 (claim mot-list->vec

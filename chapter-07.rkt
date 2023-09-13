@@ -1,19 +1,19 @@
 #lang pie
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Dependent Types
-;;
-;; A type that is determined by something that is not a type is called a dependent
-;; type.
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Dependent Types                                                              ;;
+;;                                                                              ;;
+;; A type that is determined by something that is not a type is called a depend ;;
+;; type.                                                                        ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Use ind-Nat for Dependent Types
-;;
-;; Use ind-Nat instead of rec-Nat when the rec-Nat- or ind-Nat- expression's type
-;; depends on the target Nat. The ind-Nat- expression's type is the motive applied
-;; to the target.
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Use ind-Nat for Dependent Types                                              ;;
+;;                                                                              ;;
+;; Use ind-Nat instead of rec-Nat when the rec-Nat- or ind-Nat- expression's ty ;;
+;; depends on the target Nat. The ind-Nat- expression's type is the motive appl ;;
+;; to the target.                                                               ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; 145:13
 (claim mot-peas
@@ -33,59 +33,59 @@
     (lambda (peas_l-1)
       (vec:: 'pea peas_l-1))))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; The Law of ind-Nat
-;;
-;; If target is a Nat, mot is an
-;;   (-> Nat
-;;     U),
-;; base is a (mot zero), and step is a
-;;   (Pi ((n-1 Nat))
-;;     (-> (mot n-1)
-;;      (mot (add1 n-1)))),
-;; then
-;;   (ind-Nat target
-;;     mot
-;;     base
-;;     step)
-;; is a (mot traget).
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; The Law of ind-Nat                                                           ;;
+;;                                                                              ;;
+;; If target is a Nat, mot is an                                                ;;
+;;   (-> Nat                                                                    ;;
+;;     U),                                                                      ;;
+;; base is a (mot zero), and step is a                                          ;;
+;;   (Pi ((n-1 Nat))                                                            ;;
+;;     (-> (mot n-1)                                                            ;;
+;;      (mot (add1 n-1)))),                                                     ;;
+;; then                                                                         ;;
+;;   (ind-Nat target                                                            ;;
+;;     mot                                                                      ;;
+;;     base                                                                     ;;
+;;     step)                                                                    ;;
+;; is a (mot traget).                                                           ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; The First Commandment of ind-Nat
-;;
-;; The ind-Nat-expression
-;;   (ind-Nat zero
-;;     mot
-;;     base
-;;     step)
-;; is the same (mot zero) as base.
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; The First Commandment of ind-Nat                                             ;;
+;;                                                                              ;;
+;; The ind-Nat-expression                                                       ;;
+;;   (ind-Nat zero                                                              ;;
+;;     mot                                                                      ;;
+;;     base                                                                     ;;
+;;     step)                                                                    ;;
+;; is the same (mot zero) as base.                                              ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; The Second Commandment of ind-Nat
-;;
-;; The ind-Nat-expression
-;;   (ind-Nat (add1 n)
-;;     mot
-;;     base
-;;     step)
-;; and
-;;   (step n)
-;;     (ind-Nat n
-;;       mot
-;;       base
-;;       step))
-;; are the same (mot (add1 n)).
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; The Second Commandment of ind-Nat                                            ;;
+;;                                                                              ;;
+;; The ind-Nat-expression                                                       ;;
+;;   (ind-Nat (add1 n)                                                          ;;
+;;     mot                                                                      ;;
+;;     base                                                                     ;;
+;;     step)                                                                    ;;
+;; and                                                                          ;;
+;;   (step n)                                                                   ;;
+;;     (ind-Nat n                                                               ;;
+;;       mot                                                                    ;;
+;;       base                                                                   ;;
+;;       step))                                                                 ;;
+;; are the same (mot (add1 n)).                                                 ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Induction on Natural Numbers
-;;
-;; Building a value for any natural number by giving a value for zero and a way to
-;; transform a value for n into a value for n + 1 is called induction on natural
-;; numbers.
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Induction on Natural Numbers                                                 ;;
+;;                                                                              ;;
+;; Building a value for any natural number by giving a value for zero and a way ;;
+;; transform a value for n into a value for n + 1 is called induction on natura ;;
+;; numbers.                                                                     ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; 149:25
 (claim peas
@@ -125,11 +125,11 @@
     (lambda (es)
       (head es))))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; ind-Nat's Base Type
-;;
-;; In ind-Nat, the base's type is the motive applied to the target zero.
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ind-Nat's Base Type                                                          ;;
+;;                                                                              ;;
+;; In ind-Nat, the base's type is the motive applied to the target zero.        ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; 153:40
 (claim mot-last
@@ -140,16 +140,16 @@
     (-> (Vec E (add1 k))
       E)))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; ind-Nat's Step Type
-;;
-;; In ind-Nat, the step must take two arguments: some Nat n and an almost-answer
-;; whose type is the motive applied to n. The type of the answer from the step is
-;; the motive applied to (add1 n). The step's type is:
-;;   (Pi ((n Nat))
-;;     (-> (mot n)
-;;       (mot (add1 n))))
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ind-Nat's Step Type                                                          ;;
+;;                                                                              ;;
+;; In ind-Nat, the step must take two arguments: some Nat n and an almost-answe ;;
+;; whose type is the motive applied to n. The type of the answer from the step  ;;
+;; the motive applied to (add1 n). The step's type is:                          ;;
+;;   (Pi ((n Nat))                                                              ;;
+;;     (-> (mot n)                                                              ;;
+;;       (mot (add1 n))))                                                       ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; 156:49
 (claim step-last
@@ -186,12 +186,13 @@
     (lambda (es)
       vecnil)))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Readable Expressions
-;;
-;; Getting the right answer is worthless if we do not know that it is correct.
-;; Understanding the answer is at least as important as having the correct answer.
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Readable Expressions                                                         ;;
+;;                                                                              ;;
+;; Getting the right answer is worthless if we do not know that it is correct.  ;;
+;; Understanding the answer is at least as important as having the correct      ;;
+;; answer.                                                                      ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; 160:64
 (claim mot-drop-last

@@ -1,16 +1,16 @@
 #lang pie
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; The Intermediate Law of Application 
-;;
-;; If f is a 
-;;   (Pi ((Y U))
-;;     X)
-;; and Z is a U, then
-;;   (f Z)
-;; is an X
-;;   where every Y has been consistently replaced by Z.
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; The Intermediate Law of Application                                          ;;
+;;                                                                              ;;
+;; If f is a                                                                    ;;
+;;   (Pi ((Y U))                                                                ;;
+;;     X)                                                                       ;;
+;; and Z is a U, then                                                           ;;
+;;   (f Z)                                                                      ;;
+;; is an X                                                                      ;;
+;;   where every Y has been consistently replaced by Z.                         ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; 103:41
 (claim elim-Pair_1 ; no hoisting
