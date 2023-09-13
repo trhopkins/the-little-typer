@@ -55,10 +55,10 @@
   (-> Nat Nat
     Nat))
 (define +
-  (lambda (lhs rhs)
+  (λ (lhs rhs)
     (iter-Nat lhs
       rhs
-      (lambda (n)
+      (λ (n)
         (add1 n)))))
 
 ; 80:43
@@ -66,7 +66,7 @@
   (-> Nat Atom
     Atom))
 (define step-zerop
-  (lambda (n-1 zerop_n-1)
+  (λ (n-1 zerop_n-1)
     'nil))
 
 ; 80:43
@@ -74,7 +74,7 @@
   (-> Nat
     Atom))
 (define zerop
-  (lambda (n)
+  (λ (n)
     (rec-Nat n
       't
       step-zerop)))
@@ -84,7 +84,7 @@
   (-> Nat Nat
     Nat))
 (define step-gauss
-  (lambda (n-1 gauss_n-1)
+  (λ (n-1 gauss_n-1)
     (+ (add1 n-1) gauss_n-1)))
 
 ; 83:52
@@ -92,7 +92,7 @@
   (-> Nat
     Nat))
 (define gauss
-  (lambda (n)
+  (λ (n)
     (rec-Nat n
       0
       step-gauss)))
@@ -102,7 +102,7 @@
   (-> Nat Nat Nat
     Nat))
 (define step-*
-  (lambda (n n-1 *_n-1)
+  (λ (n n-1 *_n-1)
     (+ n *_n-1)))
 
 ; 88:70
@@ -110,7 +110,7 @@
   (-> Nat Nat
     Nat))
 (define *
-  (lambda (lhs rhs)
+  (λ (lhs rhs)
     (rec-Nat lhs
       0
       ; (make-step-* rhs)

@@ -2,7 +2,7 @@
 
 ;; PREREQUISITES
 (claim + (-> Nat Nat Nat))
-(define + (lambda (lhs rhs) (iter-Nat lhs rhs (lambda (n-1) (add1 n-1)))))
+(define + (λ (lhs rhs) (iter-Nat lhs rhs (λ (n-1) (add1 n-1)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Constructors and Eliminators                                                 ;;
@@ -29,14 +29,14 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; The Initial First Commandment of lambda                                      ;;
+;; The Initial First Commandment of λ                                      ;;
 ;;                                                                              ;;
-;; Two lambda-expressions that expect the same number of arguments are the same ;;
+;; Two λ-expressions that expect the same number of arguments are the same ;;
 ;; if their bodies are the same after consistently renaming their variables.    ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; The Initial Second Commandment of lambda                                     ;;
+;; The Initial Second Commandment of λ                                     ;;
 ;;                                                                              ;;
 ;; If f is an                                                                   ;;
 ;;   (-> Y                                                                      ;;
@@ -45,7 +45,7 @@
 ;;   (-> Y                                                                      ;;
 ;;     X)                                                                       ;;
 ;; as                                                                           ;;
-;;   (lambda (y)                                                                ;;
+;;   (λ (y)                                                                ;;
 ;;     (f y)),                                                                  ;;
 ;; as long as y does not occur in f.                                            ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -104,7 +104,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Names in Definitions                                                         ;;
 ;;                                                                              ;;
-;; In Pie, only names that are not already used, whther for constructors,       ;;
+;; In Πe, only names that are not already used, whther for constructors,       ;;
 ;; eliminators, or previous definitions, can be used with claim or define.      ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -151,10 +151,10 @@
 
 ; 51:59
 #;(define gauss
-    (lambda (n)
+    (λ (n)
       (which-Nat n
         0
-        (lambda (n-1)
+        (λ (n-1)
           (+ (add1 (n-1) (gauss n-1))))))) ; recursion is not an option
 
 ; 52:64
@@ -162,7 +162,7 @@
     (-> Nat
       Atom))
 #;(define forever
-    (lambda (and-ever)
+    (λ (and-ever)
       (forever and-ever))) ; --because recursion is not an option!
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -205,7 +205,7 @@
   (-> Pear Pear-maker
     Pear))
 (define elim-Pear
-  (lambda (pear maker)
+  (λ (pear maker)
     (maker (car pear) (cdr pear))))
 
 ; 58:93
@@ -220,11 +220,11 @@
   (-> Pear Pear
     Pear))
 (define pearwise-+
-  (lambda (anjou bosc)
+  (λ (anjou bosc)
     (elim-Pear anjou
-      (lambda (a_1 d_1)
+      (λ (a_1 d_1)
         (elim-Pear bosc
-          (lambda (a_2 d_2)
+          (λ (a_2 d_2)
             (cons
               (+ a_1 a_2)
               (+ d_1 d_2))))))))

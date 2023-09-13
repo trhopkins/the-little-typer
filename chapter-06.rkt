@@ -22,40 +22,40 @@
 
 ; 134:24
 (claim first-of-one
-  (Pi ((E U))
+  (Π ((E U))
     (-> (Vec E 1)
       E)))
 (define first-of-one
-  (lambda (E)
-    (lambda (es)
+  (λ (E)
+    (λ (es)
       (head es))))
 
 ; 134:27
 (claim first-of-two
-  (Pi ((E U))
+  (Π ((E U))
     (-> (Vec E 2)
       E)))
 (define first-of-two
-  (lambda (E)
-    (lambda (es)
+  (λ (E)
+    (λ (es)
       (head es))))
 
 ; 136:34
 (claim first
-  (Pi ((E U)
+  (Π ((E U)
        (l Nat))
     (-> (Vec E (add1 l))
       E)))
 (define first
-  (lambda (E l)
-    (lambda (es)
+  (λ (E l)
+    (λ (es)
       (head es))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; The Law of Pi                                                                ;;
+;; The Law of Π                                                                ;;
 ;;                                                                              ;;
 ;; The expression                                                               ;;
-;;   (Pi ((y Y))                                                                ;;
+;;   (Π ((y Y))                                                                ;;
 ;;     X)                                                                       ;;
 ;; is a type when Y is a type, and X is a type if y is a Y.                     ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -68,25 +68,25 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; -> and Pi                                                                    ;;
+;; -> and Π                                                                    ;;
 ;;                                                                              ;;
 ;; The type                                                                     ;;
 ;;   (-> Y                                                                      ;;
 ;;     X)                                                                       ;;
 ;; is a shorter way of saying                                                   ;;
-;;   (Pi ((y Y))                                                                ;;
+;;   (Π ((y Y))                                                                ;;
 ;;     X)                                                                       ;;
 ;; when y is not used in X.                                                     ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; The Final law of lambda                                                      ;;
+;; The Final law of λ                                                      ;;
 ;;                                                                              ;;
 ;; If x is an X when y is a Y, then                                             ;;
-;;   (lambda (y)                                                                ;;
+;;   (λ (y)                                                                ;;
 ;;     x)                                                                       ;;
 ;; is a                                                                         ;;
-;;   (Pi ((y Y))                                                                ;;
+;;   (Π ((y Y))                                                                ;;
 ;;     X).                                                                      ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -94,7 +94,7 @@
 ;; The Final Law of Application                                                 ;;
 ;;                                                                              ;;
 ;; If f is a                                                                    ;;
-;;   (Pi ((y Y))                                                                ;;
+;;   (Π ((y Y))                                                                ;;
 ;;     X)                                                                       ;;
 ;; and z is a Y, then                                                           ;;
 ;;   (f z)                                                                      ;;
@@ -103,33 +103,33 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; The Final First Commandment of lambda                                        ;;
+;; The Final First Commandment of λ                                        ;;
 ;;                                                                              ;;
-;; If two lambda-expressions can be made the same                               ;;
-;;   (Pi ((y Y))                                                                ;;
+;; If two λ-expressions can be made the same                               ;;
+;;   (Π ((y Y))                                                                ;;
 ;;     X),                                                                      ;;
 ;; by consistently renaming their variables, then they are the same.            ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; The Final Second Commandment of lambda                                       ;;
+;; The Final Second Commandment of λ                                       ;;
 ;;                                                                              ;;
 ;; If f is a                                                                    ;;
-;;   (Pi ((y Y))                                                                ;;
+;;   (Π ((y Y))                                                                ;;
 ;;     X),                                                                      ;;
 ;; and y does not occur in f, then if is the same as                            ;;
-;;   (lambda (y)                                                                ;;
+;;   (λ (y)                                                                ;;
 ;;     (f y)).                                                                  ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; 141:44
 (claim rest
-  (Pi ((E U)
+  (Π ((E U)
        (l Nat))
     (-> (Vec E (add1 l))
       (Vec E l))))
 (define rest
-  (lambda (E l)
-    (lambda (es)
+  (λ (E l)
+    (λ (es)
       (tail es))))
 

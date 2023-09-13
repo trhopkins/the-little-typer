@@ -2,17 +2,17 @@
 
 ; PREREQUISITE
 (claim + (-> Nat Nat Nat))
-(define + (lambda (lhs rhs) (iter-Nat lhs rhs (lambda (n) (add1 n)))))
+(define + (λ (lhs rhs) (iter-Nat lhs rhs (λ (n) (add1 n)))))
 
 ; 171:5
 (claim incr
   (-> Nat
     Nat))
 (define incr
-  (lambda (n)
+  (λ (n)
     (rec-Nat n
       1
-      (lambda (n-1)
+      (λ (n-1)
         (+ 1)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -38,10 +38,10 @@
 
 ; 180:41
 (claim +1=add1
-  (Pi ((n Nat))
+  (Π ((n Nat))
     (= Nat (+ 1 n) (add1 n))))
 (define +1=add1
-  (lambda (n)
+  (λ (n)
     (same (add1 n))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -63,7 +63,7 @@
   (-> Nat
     U))
 (define mot-incr=add1
-  (lambda (n)
+  (λ (n)
     (= Nat (incr n) (add1 n))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -97,7 +97,7 @@
 
 ; 191:80
 (claim step-incr=add1
-  (Pi ((n-1 Nat))
+  (Π ((n-1 Nat))
     (-> (= Nat
           (incr n-1)
           (add1 n-1))
@@ -105,16 +105,16 @@
         (add1 (incr n-1))
         (add1 (add1 n-1)))))) ; swap incr/add1
 (define step-incr=add1
-  (lambda (n)
-    (lambda (step-incr=add1_n-1)
+  (λ (n)
+    (λ (step-incr=add1_n-1)
       (cong step-incr=add1_n-1 (+ 1)))))
 
 ; 192:81
 (claim incr=add1
-  (Pi ((n Nat))
+  (Π ((n Nat))
     (= Nat (incr n) (add1 n))))
 (define incr=add1
-  (lambda (n)
+  (λ (n)
     (ind-Nat n
       mot-incr=add1
       base-incr=add1
@@ -137,6 +137,6 @@
   (-> Atom
     Atom))
 (define sandwich
-  (lambda (which-sandwich)
+  (λ (which-sandwich)
     'delicious))
 

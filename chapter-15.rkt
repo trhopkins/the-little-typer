@@ -5,29 +5,29 @@
   (-> Nat Nat
     U))
 (define =consequence
-  (lambda (n j)
+  (λ (n j)
     (which-Nat n
       (which-Nat j
         Trivial
-        (lambda (j-1)
+        (λ (j-1)
           Absurd))
-      (lambda (n-1)
+      (λ (n-1)
         (which-Nat j
           Absurd
-          (lambda (j-1)
+          (λ (j-1)
             (= Nat n-1 j-1)))))))
 
 ; 321:27
 (claim =consequence-same
-  (Pi ((n Nat))
+  (Π ((n Nat))
     (=consequence n n)))
 (define =consequence-same
-  (lambda (n)
+  (λ (n)
     (ind-Nat n
-      (lambda (k)
+      (λ (k)
         (=consequence k k))
       sole
-      (lambda (n-1 =consequence_n-1)
+      (λ (n-1 =consequence_n-1)
         (same n-1)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -44,25 +44,25 @@
 
 ; 325:42
 (claim use-Nat=
-  (Pi ((n Nat)
+  (Π ((n Nat)
        (j Nat))
     (-> (= Nat n j)
       (=consequence n j))))
 (define use-Nat=
-  (lambda (n j)
-    (lambda (n=j)
+  (λ (n j)
+    (λ (n=j)
       (replace n=j
-        (lambda (k)
+        (λ (k)
           (=consequence n k))
         (=consequence-same n)))))
 
 ; 326:47
 (claim zero-not-add1
-  (Pi ((n Nat))
+  (Π ((n Nat))
     (-> (= Nat 0 (add1 n))
       Absurd)))
 (define zero-not-add1
-  (lambda (n)
+  (λ (n)
     (use-Nat= 0 (add1 n))))
 
 ; 327:48
@@ -70,18 +70,18 @@
   (-> (= Nat 0 6)
     (= Atom 'powdered 'glazed)))
 (define donut-absurdity
-  (lambda (zero=six)
+  (λ (zero=six)
     (ind-Absurd (zero-not-add1 5 zero=six)
       (= Atom 'powdered 'glazed))))
 
 ; 327:50
 (claim sub1=
-  (Pi ((n Nat)
+  (Π ((n Nat)
        (j Nat))
     (-> (= Nat (add1 n) (add1 j))
       (= Nat n j))))
 (define sub1=
-  (lambda (n j)
+  (λ (n j)
     (use-Nat= (add1 n) (add1 j))))
 
 ; 328:53
@@ -89,59 +89,59 @@
   (-> (= Nat 1 6)
     Absurd))
 (define one-not-six
-  (lambda (one=six)
+  (λ (one=six)
     (zero-not-add1 4
       (sub1= 0 5 one=six))))
 
 ; 330:60
 (claim mot-front
-  (Pi ((E U)
+  (Π ((E U)
        (k Nat))
     (-> (Vec E k)
       U)))
 (define mot-front
-  (lambda (E k)
-    (lambda (es)
-      (Pi ((j Nat))
+  (λ (E k)
+    (λ (es)
+      (Π ((j Nat))
         (-> (= Nat k (add1 j))
           E)))))
 
 ; 332:69
 (claim step-front
-  (Pi ((E U)
+  (Π ((E U)
        (l Nat)
        (e E)
        (es (Vec E l)))
     (-> (mot-front E l es)
       (mot-front E (add1 l) (vec:: e es)))))
 (define step-front
-  (lambda (E l e es)
-    (lambda (front_es)
-      (lambda (j)
-        (lambda (eq)
+  (λ (E l e es)
+    (λ (front_es)
+      (λ (j)
+        (λ (eq)
           e)))))
 
 ; 333:74
 (claim front
-  (Pi ((E U)
+  (Π ((E U)
        (l Nat))
     (-> (Vec E (add1 l))
       E)))
 #;(define front
-  (lambda (E l)
-    (lambda (es)
+  (λ (E l)
+    (λ (es)
       (ind-Vec (add1 l) es
-        (lambda (k xs)
+        (λ (k xs)
           E)
         TODO ; this box cannot be filled; redefine the motive to encode this
-        (lambda (k h tl front_ys)
+        (λ (k h tl front_ys)
           h)))))
 (define front
-  (lambda (E l)
-    (lambda (es)
+  (λ (E l)
+    (λ (es)
       ((ind-Vec (add1 l) es
          (mot-front E)
-         (lambda (j eq)
+         (λ (j eq)
            (ind-Absurd (zero-not-add1 j eq)
              E))
          (step-front E))
@@ -149,25 +149,25 @@
 
 ; 335:83
 #;(claim pem
-  (Pi ((X U))
+  (Π ((X U))
     (Either X
       (-> X
         Absurd)))) ; cannot be defined
 
 ; 339:103
 (claim pem-not-false
-  (Pi ((X U))
+  (Π ((X U))
     (-> (-> (Either X
               (-> X
                 Absurd))
           Absurd)
       Absurd)))
 (define pem-not-false
-  (lambda (X)
-    (lambda (pem-false)
+  (λ (X)
+    (λ (pem-false)
       (pem-false
         (right
-          (lambda (x)
+          (λ (x)
             (pem-false
               (left x))))))))
 
@@ -176,7 +176,7 @@
   (-> U
     U))
 (define Dec
-  (lambda (X)
+  (λ (X)
     (Either X
       (-> X
         Absurd))))

@@ -20,17 +20,17 @@
   (-> Nat
     U))
 (define mot-peas
-  (lambda (k)
+  (λ (k)
     (Vec Atom k)))
 
 ; 147:20
 (claim step-peas
-  (Pi ((l-1 Nat))
+  (Π ((l-1 Nat))
     (-> (mot-peas l-1)
       (mot-peas (add1 l-1)))))
 (define step-peas
-  (lambda (l-1)
-    (lambda (peas_l-1)
+  (λ (l-1)
+    (λ (peas_l-1)
       (vec:: 'pea peas_l-1))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -40,7 +40,7 @@
 ;;   (-> Nat                                                                    ;;
 ;;     U),                                                                      ;;
 ;; base is a (mot zero), and step is a                                          ;;
-;;   (Pi ((n-1 Nat))                                                            ;;
+;;   (Π ((n-1 Nat))                                                            ;;
 ;;     (-> (mot n-1)                                                            ;;
 ;;      (mot (add1 n-1)))),                                                     ;;
 ;; then                                                                         ;;
@@ -89,10 +89,10 @@
 
 ; 149:25
 (claim peas
-  (Pi ((l Nat))
+  (Π ((l Nat))
     (Vec Atom l)))
 (define peas
-  (lambda (l)
+  (λ (l)
     (ind-Nat l
       mot-peas
       vecnil
@@ -100,29 +100,29 @@
 
 ; 150:27
 (claim also-rec-Nat
-  (Pi ((X U))
+  (Π ((X U))
     (-> Nat
         X
         (-> Nat X
           X)
       X)))
 (define also-rec-Nat
-  (lambda (X)
-    (lambda (target base step)
+  (λ (X)
+    (λ (target base step)
       (ind-Nat target
-        (lambda (k)
+        (λ (k)
 	  X)
 	base
 	step))))
 
 ; 152:34
 (claim base-last
-  (Pi ((E U))
+  (Π ((E U))
     (-> (Vec E 1)
       E)))
 (define base-last
-  (lambda (E)
-    (lambda (es)
+  (λ (E)
+    (λ (es)
       (head es))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -136,7 +136,7 @@
   (-> U Nat
     U))
 (define mot-last
-  (lambda (E k)
+  (λ (E k)
     (-> (Vec E (add1 k))
       E)))
 
@@ -146,31 +146,31 @@
 ;; In ind-Nat, the step must take two arguments: some Nat n and an almost-answe ;;
 ;; whose type is the motive applied to n. The type of the answer from the step  ;;
 ;; the motive applied to (add1 n). The step's type is:                          ;;
-;;   (Pi ((n Nat))                                                              ;;
+;;   (Π ((n Nat))                                                              ;;
 ;;     (-> (mot n)                                                              ;;
 ;;       (mot (add1 n))))                                                       ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; 156:49
 (claim step-last
-  (Pi ((E U)
+  (Π ((E U)
        (l-1 Nat))
     (-> (mot-last E l-1)
       (mot-last E (add1 l-1)))))
 (define step-last
-  (lambda (E l-1)
-    (lambda (last_l-1)
-      (lambda (es)
+  (λ (E l-1)
+    (λ (last_l-1)
+      (λ (es)
         (last_l-1 (tail es))))))
 
 ; 157:54
 (claim last
-  (Pi ((E U)
+  (Π ((E U)
        (l Nat))
     (-> (Vec E (add1 l))
       E)))
 (define last
-  (lambda (E l)
+  (λ (E l)
     (ind-Nat l
       (mot-last E)
       (base-last E)
@@ -178,12 +178,12 @@
 
 ; 159:61
 (claim base-drop-last
-  (Pi ((E U))
+  (Π ((E U))
     (-> (Vec E 1)
       (Vec E 0))))
 (define base-drop-last
-  (lambda (E)
-    (lambda (es)
+  (λ (E)
+    (λ (es)
       vecnil)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -199,31 +199,31 @@
   (-> U Nat
     U))
 (define mot-drop-last
-  (lambda (E l)
+  (λ (E l)
     (-> (Vec E (add1 l))
       (Vec E l))))
 
 ; 161:67
 (claim step-drop-last
-  (Pi ((E U)
+  (Π ((E U)
        (l Nat))
     (-> (mot-drop-last E l)
       (mot-drop-last E (add1 l)))))
 (define step-drop-last
-  (lambda (E l)
-    (lambda (drop-last_l-1)
-      (lambda (es)
+  (λ (E l)
+    (λ (drop-last_l-1)
+      (λ (es)
         (vec:: (head es)
           (drop-last_l-1 (tail es)))))))
 
 ; 161:69
 (claim drop-last
-  (Pi ((E U)
+  (Π ((E U)
        (l Nat))
     (-> (Vec E (add1 l))
       (Vec E l))))
 (define drop-last
-  (lambda (E l)
+  (λ (E l)
     (ind-Nat l
       (mot-drop-last E)
       (base-drop-last E)

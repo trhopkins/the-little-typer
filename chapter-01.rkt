@@ -183,7 +183,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Everything is an Expression
 ;;
-;; In Pie, values are also expressions. Evaluation in Pie finds an expression,
+;; In Πe, values are also expressions. Evaluation in Πe finds an expression,
 ;; not some other kind of thing.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

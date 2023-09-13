@@ -2,7 +2,7 @@
 
 ;; PREREQUISITES
 (claim sandwich (-> Atom Atom))
-(define sandwich (lambda (which) 'delicious))
+(define sandwich (λ (which) 'delicious))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; The Law of Trivial                                                           ;;
@@ -26,80 +26,80 @@
   (-> U
     U))
 (define Maybe
-  (lambda (X)
+  (λ (X)
     (Either X Trivial)))
 
 ; 297:9
 (claim nothing
-  (Pi ((E U))
+  (Π ((E U))
     (Maybe E)))
 (define nothing
-  (lambda (E)
+  (λ (E)
     (right sole)))
 
 ; 297:10
 (claim just
-  (Pi ((E U))
+  (Π ((E U))
     (-> E
       (Maybe E))))
 (define just
-  (lambda (E)
-    (lambda (e)
+  (λ (E)
+    (λ (e)
       (left e))))
 
 ; 298:14
 (claim maybe-head
-  (Pi ((E U))
+  (Π ((E U))
     (-> (List E)
       (Maybe E))))
 (define maybe-head
-  (lambda (E)
-    (lambda (es)
+  (λ (E)
+    (λ (es)
       (rec-List es
         (nothing E)
-        (lambda (e es maybe-head_es)
+        (λ (e es maybe-head_es)
           (just E e))))))
 
 ; 298:16
 (claim maybe-tail
-  (Pi ((E U))
+  (Π ((E U))
     (-> (List E)
       (Maybe (List E)))))
 (define maybe-tail
-  (lambda (E)
-    (lambda (es)
+  (λ (E)
+    (λ (es)
       (rec-List es
         (nothing (List E))
-        (lambda (e es maybe-tail_es)
+        (λ (e es maybe-tail_es)
             (just (List E) es))))))
 
 ; 300:23
 (claim step-list-ref
-  (Pi ((E U))
+  (Π ((E U))
     (-> Nat (-> (List E)
               (Maybe E))
       (-> (List E)
         (Maybe E)))))
 (define step-list-ref
-  (lambda (E)
-    (lambda (n-1 list-ref_n-1)
-      (lambda (es)
+  (λ (E)
+    (λ (n-1 list-ref_n-1)
+      (λ (es)
         (ind-Either (maybe-tail E es)
-          (lambda (maybe_tl)
+          (λ (maybe_tl)
             (Maybe E))
-          (lambda (tl)
+          (λ (tl)
             (list-ref_n-1 tl))
-          (lambda (none)
+          (λ (none)
             (nothing E)))))))
 
 ; 300:24
 (claim list-ref
-  (Pi ((E U))
+  (Π ((E U))
     (-> Nat (List E)
       (Maybe E))))
 (define list-ref
-  (lambda (E)
-    (lambda (n)
+  (λ (E)
+    (λ (n)
       (rec-Nat n
         (maybe-head E)
         (step-list-ref E)))))
@@ -126,7 +126,7 @@
   (-> Absurd
     Absurd))
 (define similarly-absurd
-  (lambda (x)
+  (λ (x)
     x)) ; I dare you to run this function!
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -149,71 +149,71 @@
   (-> Nat
     U))
 (define Fin
-  (lambda (n)
+  (λ (n)
     (iter-Nat n
       Absurd
       Maybe)))
 
 ; 307:57
 (claim fzero
-  (Pi ((n Nat))
+  (Π ((n Nat))
     #;(Fin (add1 n))
     (Maybe (Fin n))))
 (define fzero
-  (lambda (n)
+  (λ (n)
     (nothing (Fin n))))
 
 ; 308:60
 (claim fadd1
-  (Pi ((n Nat))
+  (Π ((n Nat))
     (-> (Fin n)
       (Fin (add1 n)))))
 (define fadd1
-  (lambda (n)
-    (lambda (i-1)
+  (λ (n)
+    (λ (i-1)
       (just (Fin n) i-1))))
 
 ; 309:65
 (claim base-vec-ref
-  (Pi ((E U))
+  (Π ((E U))
     (-> (Fin 0) (Vec E 0)
       E)))
 (define base-vec-ref
-  (lambda (E)
-    (lambda (no-value-ever es)
+  (λ (E)
+    (λ (no-value-ever es)
       (ind-Absurd no-value-ever
         E))))
 
 ; 311:70
 (claim step-vec-ref
-  (Pi ((E U)
+  (Π ((E U)
        (l-1 Nat))
     (-> (-> (Fin l-1) (Vec E l-1)
           E)
       (-> (Fin (add1 l-1)) (Vec E (add1 l-1))
         E))))
 (define step-vec-ref
-  (lambda (E l-1)
-    (lambda (vec-ref_l-1)
-      (lambda (i es)
+  (λ (E l-1)
+    (λ (vec-ref_l-1)
+      (λ (i es)
         (ind-Either i
-          (lambda (maybe_i)
+          (λ (maybe_i)
             E)
-          (lambda (i-1)
+          (λ (i-1)
             (vec-ref_l-1 i-1 (tail es)))
-          (lambda (triv)
+          (λ (triv)
             (head es)))))))
 
 ; 311:71
 (claim vec-ref
-  (Pi ((E U)
+  (Π ((E U)
        (l Nat))
     (-> (Fin l) (Vec E l)
       E)))
 (define vec-ref
-  (lambda (E l)
+  (λ (E l)
     (ind-Nat l
-      (lambda (k)
+      (λ (k)
         (-> (Fin k) (Vec E k)
           E))
       (base-vec-ref E)
@@ -238,10 +238,10 @@
   (-> Nat
     U))
 #;(define Two-Fun
-  (lambda (n)
+  (λ (n)
     (iter-Nat n
       Two
-      (lambda (type)
+      (λ (type)
         (-> Two
           Two)))))
 
@@ -250,33 +250,33 @@
   (-> Two Two
     Two))
 #;(define both-left
-  (lambda (a b)
+  (λ (a b)
     (ind-Either a
-      (lambda (c)
+      (λ (c)
         Two)
-      (lambda (left-sole)
+      (λ (left-sole)
         b)
-      (lambda (right-sole)
+      (λ (right-sole)
         (right sole)))))
 
 ; 315
 #;(claim step-taut
-  (Pi ((n-1 Nat))
+  (Π ((n-1 Nat))
     (-> (-> (Two-Fun n-1)
           Two)
       (-> (Two-Fun (add1 n-1))
         Two))))
 #;(define step-taut
-  (lambda (n-1 taut_n-1)
-    (lambda (f)
+  (λ (n-1 taut_n-1)
+    (λ (f)
       (both-left
         (taut_n-1
           (f (left sole)))
         (taut_n-1
           (f (right sole)))))))
 #;(define step-taut
-  (lambda (n-1 taut_n-1)
-    (lambda (f)
+  (λ (n-1 taut_n-1)
+    (λ (f)
       (both-left
         (taut_n-1
           (f (left sole)))
@@ -285,16 +285,16 @@
 
 ; 315
 #;(claim taut
-  (Pi ((n Nat))
+  (Π ((n Nat))
     (-> (Two-Fun n)
       Two)))
 #;(define taut
-  (lambda (n)
+  (λ (n)
     (ind-Nat n
-      (lambda (k)
+      (λ (k)
         (-> (Two-Fun k)
             Two))
-      (lambda (x)
+      (λ (x)
         x)
       step-taut)))
 

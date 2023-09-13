@@ -4,7 +4,7 @@
 ;; The Intermediate Law of Application                                          ;;
 ;;                                                                              ;;
 ;; If f is a                                                                    ;;
-;;   (Pi ((Y U))                                                                ;;
+;;   (Π ((Y U))                                                                ;;
 ;;     X)                                                                       ;;
 ;; and Z is a U, then                                                           ;;
 ;;   (f Z)                                                                      ;;
@@ -14,7 +14,7 @@
 
 ; 103:41
 (claim elim-Pair_1 ; no hoisting
-  (Pi ((A U)
+  (Π ((A U)
        (D U)
        (X U))
     (-> (Pair A D)
@@ -22,8 +22,8 @@
           X)
       X)))
 (define elim-Pair_1
-  (lambda (A D X)
-    (lambda (p f)
+  (λ (A D X)
+    (λ (p f)
       (f (car p) (cdr p)))))
 
 ; 103:42
@@ -31,12 +31,12 @@
   (-> (Pair Nat Nat)
     Nat))
 (define kar_1
-  (lambda (p)
+  (λ (p)
     (elim-Pair_1
       Nat Nat
       Nat
       p
-      (lambda (a d)
+      (λ (a d)
         a))))
 
 ; 103:42
@@ -44,12 +44,12 @@
   (-> (Pair Nat Nat)
     Nat))
 (define kdr_1
-  (lambda (p)
+  (λ (p)
     (elim-Pair_1
       Nat Nat
       Nat
       p
-      (lambda (a d)
+      (λ (a d)
         d))))
 
 ; 104:43
@@ -57,21 +57,21 @@
   (-> (Pair Nat Atom)
     (Pair Atom Nat)))
 (define swap
-  (lambda (p)
+  (λ (p)
     (elim-Pair_1
       Nat Atom
       (Pair Atom Nat)
       p
-      (lambda (a d)
+      (λ (a d)
         (cons d a)))))
 
 ; 104:43
 (claim twin
-  (Pi ((T U))
+  (Π ((T U))
     (-> T
       (Pair T T))))
 (define twin
-  (lambda (T)
-    (lambda (v)
+  (λ (T)
+    (λ (v)
       (cons v v))))
 

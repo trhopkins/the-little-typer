@@ -6,20 +6,20 @@
   (-> Nat Nat
     Nat))
 (define +
-  (lambda (lhs rhs)
+  (λ (lhs rhs)
     (iter-Nat lhs
       rhs
-      (lambda (n)
+      (λ (n)
         (add1 n)))))
 
 (claim double
   (-> Nat
     Nat))
 (define double
-  (lambda (n)
+  (λ (n)
     (iter-Nat n
       0
-      #;(lambda (x)
+      #;(λ (x)
         (add1 (add1 x)))
       (+ 2))))
 
@@ -29,8 +29,8 @@
   (-> Nat
     U))
 (define Even
-  (lambda (n)
-    (Sigma ((half Nat))
+  (λ (n)
+    (Σ ((half Nat))
       (= Nat
         n
         (double half)))))
@@ -49,12 +49,12 @@
 
 ; 270:26
 (claim +-two-even
-  (Pi ((n Nat))
+  (Π ((n Nat))
     (-> (Even n)
       (Even (+ 2 n)))))
 (define +-two-even
-  (lambda (n)
-    (lambda (even_n)
+  (λ (n)
+    (λ (even_n)
       (cons (add1 (car even_n))
         (cong (cdr even_n) (+ 2))))))
 
@@ -75,8 +75,8 @@
   (-> Nat
     U))
 (define Odd
-  (lambda (n)
-    (Sigma ((haf Nat))
+  (λ (n)
+    (Σ ((haf Nat))
       (= Nat
         n
         (add1 (double haf))))))
@@ -95,23 +95,23 @@
 
 ; 273:44
 (claim add1-even->odd
-  (Pi ((n Nat))
+  (Π ((n Nat))
     (-> (Even n)
       (Odd (add1 n)))))
 (define add1-even->odd
-  (lambda (n)
-    (lambda (even_n)
+  (λ (n)
+    (λ (even_n)
       (cons (car even_n)
         (cong (cdr even_n) (+ 1))))))
 
 ; 276:56
 (claim add1-odd->even
-  (Pi ((n Nat))
+  (Π ((n Nat))
     (-> (Odd n)
       (Even (add1 n)))))
 (define add1-odd->even
-  (lambda (n)
-    (lambda (odd_n)
+  (λ (n)
+    (λ (odd_n)
       (cons (add1 (car odd_n))
         (cong (cdr odd_n) (+ 1))))))
 
@@ -121,10 +121,10 @@
       Nat
     Nat))
 (define repeat
-  (lambda (f n)
+  (λ (f n)
     (iter-Nat n
       (f 1)
-      (lambda (iter_n-1)
+      (λ (iter_n-1)
         (f iter_n-1)))))
 
 ; Behold! Ackermann!
@@ -132,9 +132,9 @@
   (-> Nat Nat
     Nat))
 (define ackermann
-  (lambda (n)
+  (λ (n)
     (iter-Nat n
       (+ 1)
-      (lambda (ackermann_n-1)
+      (λ (ackermann_n-1)
         (repeat ackermann_n-1)))))
 

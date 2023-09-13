@@ -4,20 +4,20 @@
   (-> Nat Nat
     Nat))
 (define +
-  (lambda (lhs rhs)
+  (λ (lhs rhs)
     (iter-Nat lhs
       rhs
-      (lambda (n)
+      (λ (n)
         (add1 n)))))
 
 (claim incr
   (-> Nat
     Nat))
 (define incr
-  (lambda (n)
+  (λ (n)
     (rec-Nat n
       1
-      (lambda (n-1)
+      (λ (n-1)
         (+ 1)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -42,7 +42,7 @@
   (-> Nat Nat
     U))
 (define mot-step-incr=add1
-  (lambda (n-1 k)
+  (λ (n-1 k)
     (= Nat
       (add1
         (incr n-1))
@@ -54,10 +54,10 @@
   (-> Nat
     Nat))
 (define double
-  (lambda (n)
+  (λ (n)
     (iter-Nat n
       0
-      #;(lambda (x)
+      #;(λ (x)
         (add1 (add1 x)))
       (+ 2))))
 
@@ -66,7 +66,7 @@
   (-> Nat
     Nat))
 (define twice
-  (lambda (n)
+  (λ (n)
     (+ n n)))
 
 ; 205:31
@@ -74,31 +74,31 @@
   (-> Nat Nat
     U))
 (define mot-add1+=+add1
-  (lambda (j k)
+  (λ (j k)
     (= Nat
       (add1 (+ k j))
       (+ k (add1 j)))))
 
 ; 206:33
 (claim step-add1+=+add1
-  (Pi ((j Nat)
+  (Π ((j Nat)
        (n-1 Nat))
     (-> (mot-add1+=+add1 j n-1)
         (mot-add1+=+add1 j (add1 n-1)))))
 (define step-add1+=+add1
-  (lambda (j n-1)
-    (lambda (add1+=+add1_n-1)
+  (λ (j n-1)
+    (λ (add1+=+add1_n-1)
       (cong add1+=+add1_n-1 (+ 1)))))
 
 ; 207:35
 (claim add1+=+add1
-  (Pi ((n Nat)
+  (Π ((n Nat)
        (m Nat))
     (= Nat
        (add1 (+ n m))
        (+ n (add1 m)))))
 (define add1+=+add1
-  (lambda (n j)
+  (λ (n j)
     (ind-Nat n
       (mot-add1+=+add1 j)
       (same (add1 j))
@@ -109,7 +109,7 @@
   (-> Nat
     U))
 (define mot-twice=double
-  (lambda (n)
+  (λ (n)
     (= Nat
        (twice n)
        (double n))))
@@ -129,31 +129,31 @@
   (-> Nat Nat
     U))
 (define mot-step-twice=double
-  (lambda (n-1 k)
+  (λ (n-1 k)
     (= Nat
       (add1 k)
       (add1 (add1 (double n-1))))))
 
 ; 212:51
 (claim step-twice=double
-  (Pi ((n-1 Nat))
+  (Π ((n-1 Nat))
     (-> (mot-twice=double n-1)
       (mot-twice=double (add1 n-1)))))
 (define step-twice=double
-  (lambda (n-1)
-    (lambda (twice=double_n-1)
+  (λ (n-1)
+    (λ (twice=double_n-1)
       (replace (add1+=+add1 n-1 n-1)
         (mot-step-twice=double n-1)
         (cong twice=double_n-1 (+ 2))))))
 
 ; 212:52
 (claim twice=double
-  (Pi ((n Nat))
+  (Π ((n Nat))
     (= Nat
        (twice n)
        (double n))))
 (define twice=double
-  (lambda (n)
+  (λ (n)
     (ind-Nat n
       mot-twice=double
       (same 0)
@@ -173,12 +173,12 @@
 
 ; 214:59
 (claim base-double-Vec
-  (Pi ((E U))
+  (Π ((E U))
     (-> (Vec E zero)
       (Vec E (double zero)))))
 (define base-double-Vec
-  (lambda (E)
-    (lambda (es)
+  (λ (E)
+    (λ (es)
       vecnil)))
 
 ; 214:60
@@ -186,37 +186,37 @@
   (-> U Nat
     U))
 (define mot-double-Vec
-  (lambda (E k)
+  (λ (E k)
     (-> (Vec E k)
       (Vec E (double k)))))
 
 ; 215:61
 (claim step-double-Vec
-  (Pi ((E U)
+  (Π ((E U)
        (l-1 Nat))
     (-> (-> (Vec E l-1)
           (Vec E (double l-1)))
         (-> (Vec E (add1 l-1))
           (Vec E (double (add1 l-1)))))))
 (define step-double-Vec
-  (lambda (E l-1)
-    (lambda (double-Vec_l-1)
-      (lambda (es)
+  (λ (E l-1)
+    (λ (double-Vec_l-1)
+      (λ (es)
         (vec:: (head es)
           (vec:: (head es)
             (double-Vec_l-1 (tail es))))))))
 
 ; 215:62
 (claim double-Vec
-  (Pi ((E U)
+  (Π ((E U)
        (l Nat))
     (-> (Vec E l)
       (Vec E (double l)))))
 (define double-Vec
-  (lambda (E l)
+  (λ (E l)
     (ind-Nat l
         (mot-double-Vec E)
-        (lambda (es_l=0)
+        (λ (es_l=0)
           vecnil)
         (step-double-Vec E))))
 
@@ -230,15 +230,15 @@
 
 ; 217:67
 (claim twice-Vec
-  (Pi ((E U)
+  (Π ((E U)
        (l Nat))
     (-> (Vec E l)
       (Vec E (twice l)))))
 (define twice-Vec
-  (lambda (E l)
-    (lambda (es)
+  (λ (E l)
+    (λ (es)
       (replace (symm (twice=double l))
-        (lambda (k)
+        (λ (k)
           (Vec E k))
         (double-Vec E l es)))))
 
