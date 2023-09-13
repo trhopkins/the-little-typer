@@ -19,7 +19,7 @@
 ;; The Law of iter-Nat                                                          ;;
 ;;                                                                              ;;
 ;; If target is a Nat, base is an X, and step is an                             ;;
-;;   (-> X                                                                      ;;
+;;   (→ X                                                                      ;;
 ;;     X),                                                                      ;;
 ;; then                                                                         ;;
 ;;   (iter-Nat target                                                           ;;
@@ -52,7 +52,7 @@
 
 ; 75:24
 (claim +
-  (-> Nat Nat
+  (→ Nat Nat
     Nat))
 (define +
   (λ (lhs rhs)
@@ -63,7 +63,7 @@
 
 ; 80:43
 (claim step-zerop
-  (-> Nat Atom
+  (→ Nat Atom
     Atom))
 (define step-zerop
   (λ (n-1 zerop_n-1)
@@ -71,7 +71,7 @@
 
 ; 80:43
 (claim zerop
-  (-> Nat
+  (→ Nat
     Atom))
 (define zerop
   (λ (n)
@@ -81,7 +81,7 @@
 
 ; 82:49
 (claim step-gauss
-  (-> Nat Nat
+  (→ Nat Nat
     Nat))
 (define step-gauss
   (λ (n-1 gauss_n-1)
@@ -89,7 +89,7 @@
 
 ; 83:52
 (claim gauss
-  (-> Nat
+  (→ Nat
     Nat))
 (define gauss
   (λ (n)
@@ -99,7 +99,7 @@
 
 ; 86:66
 (claim step-*
-  (-> Nat Nat Nat
+  (→ Nat Nat Nat
     Nat))
 (define step-*
   (λ (n n-1 *_n-1)
@@ -107,7 +107,7 @@
 
 ; 88:70
 (claim *
-  (-> Nat Nat
+  (→ Nat Nat
     Nat))
 (define *
   (λ (lhs rhs)
@@ -120,7 +120,7 @@
 ;; The Law of rec-Nat                                                           ;;
 ;;                                                                              ;;
 ;; If target is a Nat, base is an X, and step is an                             ;;
-;;   (-> Nat X                                                                  ;;
+;;   (→ Nat X                                                                  ;;
 ;;     X)                                                                       ;;
 ;; then                                                                         ;;
 ;;   (rec-Nat target                                                            ;;

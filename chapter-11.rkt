@@ -1,23 +1,23 @@
 #lang pie
 
 ;; PREREQUISITES
-(claim + (-> Nat Nat Nat))
+(claim + (→ Nat Nat Nat))
 (define + (λ (lhs rhs) (iter-Nat lhs rhs (λ (n) (add1 n)))))
 
-(claim step-length (Π ((E U)) (-> E (List E) Nat Nat)))
+(claim step-length (Π ((E U)) (→ E (List E) Nat Nat)))
 (define step-length (λ (E) (λ (e es length_es) (add1 length_es))))
 
-(claim length (Π ((E U)) (-> (List E) Nat)))
+(claim length (Π ((E U)) (→ (List E) Nat)))
 (define length (λ (E) (λ (es) (rec-List es 0 (step-length E)))))
 
-(claim mot-list->vec (Π ((E U)) (-> (List E) U)))
-(define mot-list->vec (λ (E) (λ (es) (Vec E (length E es)))))
+(claim mot-list→vec (Π ((E U)) (→ (List E) U)))
+(define mot-list→vec (λ (E) (λ (es) (Vec E (length E es)))))
 
-(claim step-list->vec (Π ((E U) (e E) (es (List E))) (-> (mot-list->vec E es) (mot-list->vec E (:: e es)))))
-(define step-list->vec (λ (E e es) (λ (list->vec_es) (vec:: e list->vec_es))))
+(claim step-list→vec (Π ((E U) (e E) (es (List E))) (→ (mot-list→vec E es) (mot-list→vec E (:: e es)))))
+(define step-list→vec (λ (E e es) (λ (list→vec_es) (vec:: e list→vec_es))))
 
-(claim list->vec (Π ((E U) (es (List E))) (Vec E (length E es))))
-(define list->vec (λ (E es) (ind-List es (mot-list->vec E) vecnil (step-list->vec E))))
+(claim list→vec (Π ((E U) (es (List E))) (Vec E (length E es))))
+(define list→vec (λ (E es) (ind-List es (mot-list→vec E) vecnil (step-list→vec E))))
 
 ; 245:2
 (claim treats
@@ -39,13 +39,13 @@
 ;;                                                                              ;;
 ;; If n is a Nat, target is a (Vec E n), mot is a                               ;;
 ;;   (Π ((k Nat))                                                              ;;
-;;     (-> (Vec E k)                                                            ;;
+;;     (→ (Vec E k)                                                            ;;
 ;;       U)),                                                                   ;;
 ;; base is a (mot zero vecnil), and step is a                                   ;;
 ;;   (Π ((k Nat)                                                               ;;
 ;;        (h E)                                                                 ;;
 ;;        (t (Vec E k)))                                                        ;;
-;;     (-> (mot k t)                                                            ;;
+;;     (→ (mot k t)                                                            ;;
 ;;       (mot (add1 k) (vec:: h t))))                                           ;;
 ;; then                                                                         ;;
 ;;   (ind-Vec n target                                                          ;;
@@ -87,7 +87,7 @@
   (Π ((E U)
        (j Nat)
        (k Nat))
-    (-> (Vec E k)
+    (→ (Vec E k)
       U)))
 (define mot-vec-append
   (λ (E j k)
@@ -101,7 +101,7 @@
        (k Nat)
        (e E)
        (es (Vec E k)))
-    (-> (mot-vec-append E j k es)
+    (→ (mot-vec-append E j k es)
       (mot-vec-append E j (add1 k) (vec:: e es)))))
 (define step-vec-append
   (λ (E j k e es)
@@ -113,7 +113,7 @@
   (Π ((E U)
        (l Nat)
        (j Nat))
-    (-> (Vec E l) (Vec E j)
+    (→ (Vec E l) (Vec E j)
         (Vec E (+ l j)))))
 (define vec-append
   (λ (E l j)
@@ -129,70 +129,70 @@
 #;(define fika
   (vec-append Atom 3 2
     treats
-    (list->vec Atom)))
+    (list→vec Atom)))
 
 ; 254:31
-(claim mot-vec->list
+(claim mot-vec→list
   (Π ((E U)
        (l Nat))
-    (-> (Vec E l)
+    (→ (Vec E l)
       U)))
-(define mot-vec->list
+(define mot-vec→list
   (λ (E l)
     (λ (es)
       (List E))))
 
 ; 254:31
-(claim step-vec->list
+(claim step-vec→list
   (Π ((E U)
        (l-1 Nat)
        (e E)
        (es (Vec E l-1)))
-    (-> (mot-vec->list E l-1 es)
-      (mot-vec->list E (add1 l-1) (vec:: e es)))))
-(define step-vec->list
+    (→ (mot-vec→list E l-1 es)
+      (mot-vec→list E (add1 l-1) (vec:: e es)))))
+(define step-vec→list
   (λ (E l-1 e es)
-    (λ (vec->list_es)
-      (:: e vec->list_es))))
+    (λ (vec→list_es)
+      (:: e vec→list_es))))
 
 ; 254:32
-(claim vec->list
+(claim vec→list
   (Π ((E U)
        (l Nat))
-    (-> (Vec E l)
+    (→ (Vec E l)
       (List E))))
-(define vec->list
+(define vec→list
   (λ (E l)
     (λ (es)
       (ind-Vec l es
-        (mot-vec->list E)
+        (mot-vec→list E)
         nil
-        (step-vec->list E)))))
+        (step-vec→list E)))))
 
 ; unused in the text
-(claim base-list->vec->list=
+(claim base-list→vec→list=
   (Π ((E U))
     #;(= (List E)
       nil
       nil)
     (= (List E)
       nil
-      (vec->list E 0 (list->vec E nil)))))
-(define base-list->vec->list=
+      (vec→list E 0 (list→vec E nil)))))
+(define base-list→vec→list=
   (λ (E)
     (same nil)))
 
 ; 256:39
-(claim mot-list->vec->list=
+(claim mot-list→vec→list=
   (Π ((E U))
-    (-> (List E)
+    (→ (List E)
       U)))
-(define mot-list->vec->list=
+(define mot-list→vec→list=
   (λ (E)
     (λ (es)
       (= (List E)
         es
-        (vec->list E (length E es) (list->vec E es))))))
+        (vec→list E (length E es) (list→vec E es))))))
 
 ; 258:45
 (claim Treat-Statement
@@ -200,7 +200,7 @@
 (define Treat-Statement
   (Π ((some-treats (List Atom))
        (more-treats (List Atom)))
-    (-> (= (List Atom)
+    (→ (= (List Atom)
           some-treats
           more-treats)
         (= (List Atom)
@@ -209,7 +209,7 @@
 
 ; 258:46
 (claim ::-plattar
-  (-> (List Atom)
+  (→ (List Atom)
     (List Atom)))
 (define ::-plattar
   (λ (treats)
@@ -227,7 +227,7 @@
 (claim length-treats=
   (Π ((some-treats (List Atom))
        (more-treats (List Atom)))
-    (-> (= (List Atom)
+    (→ (= (List Atom)
         some-treats
         more-treats)
       (= Nat
@@ -247,7 +247,7 @@
 
 (claim ::-func
   (Π ((E U))
-    (-> E (List E)
+    (→ E (List E)
       (List E))))
 (define ::-func
   (λ (E)
@@ -255,29 +255,29 @@
       (:: e es))))
 
 ; 256:40
-(claim step-list->vec->list=
+(claim step-list→vec→list=
   (Π ((E U)
        (e E)
        (es (List E)))
-    (-> (mot-list->vec->list= E es)
-      (mot-list->vec->list= E (:: e es)))))
-(define step-list->vec->list=
+    (→ (mot-list→vec→list= E es)
+      (mot-list→vec→list= E (:: e es)))))
+(define step-list→vec→list=
   (λ (E e es)
-    (λ (list->vec->list=_es)
-      (cong list->vec->list=_es (::-func E e)))))
+    (λ (list→vec→list=_es)
+      (cong list→vec→list=_es (::-func E e)))))
 
 ; 261:55
-(claim list->vec->list=
+(claim list→vec→list=
   (Π ((E U)
        (es (List E)))
     (= (List E)
       es
-      (vec->list E (length E es) (list->vec E es)))))
-(define list->vec->list=
+      (vec→list E (length E es) (list→vec E es)))))
+(define list→vec→list=
   (λ (E es)
     (ind-List es
-      (mot-list->vec->list= E)
-      #;(same nil) ; would work to replace base-list->vec->list=
-      (base-list->vec->list= E)
-      (step-list->vec->list= E))))
+      (mot-list→vec→list= E)
+      #;(same nil) ; would work to replace base-list→vec→list=
+      (base-list→vec→list= E)
+      (step-list→vec→list= E))))
 

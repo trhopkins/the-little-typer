@@ -2,7 +2,7 @@
 
 ; 320:21
 (claim =consequence
-  (-> Nat Nat
+  (→ Nat Nat
     U))
 (define =consequence
   (λ (n j)
@@ -46,7 +46,7 @@
 (claim use-Nat=
   (Π ((n Nat)
        (j Nat))
-    (-> (= Nat n j)
+    (→ (= Nat n j)
       (=consequence n j))))
 (define use-Nat=
   (λ (n j)
@@ -59,7 +59,7 @@
 ; 326:47
 (claim zero-not-add1
   (Π ((n Nat))
-    (-> (= Nat 0 (add1 n))
+    (→ (= Nat 0 (add1 n))
       Absurd)))
 (define zero-not-add1
   (λ (n)
@@ -67,7 +67,7 @@
 
 ; 327:48
 (claim donut-absurdity
-  (-> (= Nat 0 6)
+  (→ (= Nat 0 6)
     (= Atom 'powdered 'glazed)))
 (define donut-absurdity
   (λ (zero=six)
@@ -78,7 +78,7 @@
 (claim sub1=
   (Π ((n Nat)
        (j Nat))
-    (-> (= Nat (add1 n) (add1 j))
+    (→ (= Nat (add1 n) (add1 j))
       (= Nat n j))))
 (define sub1=
   (λ (n j)
@@ -86,7 +86,7 @@
 
 ; 328:53
 (claim one-not-six
-  (-> (= Nat 1 6)
+  (→ (= Nat 1 6)
     Absurd))
 (define one-not-six
   (λ (one=six)
@@ -97,13 +97,13 @@
 (claim mot-front
   (Π ((E U)
        (k Nat))
-    (-> (Vec E k)
+    (→ (Vec E k)
       U)))
 (define mot-front
   (λ (E k)
     (λ (es)
       (Π ((j Nat))
-        (-> (= Nat k (add1 j))
+        (→ (= Nat k (add1 j))
           E)))))
 
 ; 332:69
@@ -112,7 +112,7 @@
        (l Nat)
        (e E)
        (es (Vec E l)))
-    (-> (mot-front E l es)
+    (→ (mot-front E l es)
       (mot-front E (add1 l) (vec:: e es)))))
 (define step-front
   (λ (E l e es)
@@ -125,7 +125,7 @@
 (claim front
   (Π ((E U)
        (l Nat))
-    (-> (Vec E (add1 l))
+    (→ (Vec E (add1 l))
       E)))
 #;(define front
   (λ (E l)
@@ -151,14 +151,14 @@
 #;(claim pem
   (Π ((X U))
     (Either X
-      (-> X
+      (→ X
         Absurd)))) ; cannot be defined
 
 ; 339:103
 (claim pem-not-false
   (Π ((X U))
-    (-> (-> (Either X
-              (-> X
+    (→ (→ (Either X
+              (→ X
                 Absurd))
           Absurd)
       Absurd)))
@@ -173,12 +173,12 @@
 
 ; 340:107
 (claim Dec
-  (-> U
+  (→ U
     U))
 (define Dec
   (λ (X)
     (Either X
-      (-> X
+      (→ X
         Absurd))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

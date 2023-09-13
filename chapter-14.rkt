@@ -1,7 +1,7 @@
 #lang pie
 
 ;; PREREQUISITES
-(claim sandwich (-> Atom Atom))
+(claim sandwich (→ Atom Atom))
 (define sandwich (λ (which) 'delicious))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -23,7 +23,7 @@
 
 ; 296:8
 (claim Maybe
-  (-> U
+  (→ U
     U))
 (define Maybe
   (λ (X)
@@ -40,7 +40,7 @@
 ; 297:10
 (claim just
   (Π ((E U))
-    (-> E
+    (→ E
       (Maybe E))))
 (define just
   (λ (E)
@@ -50,7 +50,7 @@
 ; 298:14
 (claim maybe-head
   (Π ((E U))
-    (-> (List E)
+    (→ (List E)
       (Maybe E))))
 (define maybe-head
   (λ (E)
@@ -63,7 +63,7 @@
 ; 298:16
 (claim maybe-tail
   (Π ((E U))
-    (-> (List E)
+    (→ (List E)
       (Maybe (List E)))))
 (define maybe-tail
   (λ (E)
@@ -76,9 +76,9 @@
 ; 300:23
 (claim step-list-ref
   (Π ((E U))
-    (-> Nat (-> (List E)
+    (→ Nat (→ (List E)
               (Maybe E))
-      (-> (List E)
+      (→ (List E)
         (Maybe E)))))
 (define step-list-ref
   (λ (E)
@@ -95,7 +95,7 @@
 ; 300:24
 (claim list-ref
   (Π ((E U))
-    (-> Nat (List E)
+    (→ Nat (List E)
       (Maybe E))))
 (define list-ref
   (λ (E)
@@ -123,7 +123,7 @@
 
 ; 303:27
 (claim similarly-absurd
-  (-> Absurd
+  (→ Absurd
     Absurd))
 (define similarly-absurd
   (λ (x)
@@ -146,7 +146,7 @@
 
 ; 306:50
 (claim Fin
-  (-> Nat
+  (→ Nat
     U))
 (define Fin
   (λ (n)
@@ -166,7 +166,7 @@
 ; 308:60
 (claim fadd1
   (Π ((n Nat))
-    (-> (Fin n)
+    (→ (Fin n)
       (Fin (add1 n)))))
 (define fadd1
   (λ (n)
@@ -176,7 +176,7 @@
 ; 309:65
 (claim base-vec-ref
   (Π ((E U))
-    (-> (Fin 0) (Vec E 0)
+    (→ (Fin 0) (Vec E 0)
       E)))
 (define base-vec-ref
   (λ (E)
@@ -188,9 +188,9 @@
 (claim step-vec-ref
   (Π ((E U)
        (l-1 Nat))
-    (-> (-> (Fin l-1) (Vec E l-1)
+    (→ (→ (Fin l-1) (Vec E l-1)
           E)
-      (-> (Fin (add1 l-1)) (Vec E (add1 l-1))
+      (→ (Fin (add1 l-1)) (Vec E (add1 l-1))
         E))))
 (define step-vec-ref
   (λ (E l-1)
@@ -208,13 +208,13 @@
 (claim vec-ref
   (Π ((E U)
        (l Nat))
-    (-> (Fin l) (Vec E l)
+    (→ (Fin l) (Vec E l)
       E)))
 (define vec-ref
   (λ (E l)
     (ind-Nat l
       (λ (k)
-        (-> (Fin k) (Vec E k)
+        (→ (Fin k) (Vec E k)
           E))
       (base-vec-ref E)
       (step-vec-ref E))))
@@ -235,19 +235,19 @@
 
 ; 315
 #;(claim Two-Fun
-  (-> Nat
+  (→ Nat
     U))
 #;(define Two-Fun
   (λ (n)
     (iter-Nat n
       Two
       (λ (type)
-        (-> Two
+        (→ Two
           Two)))))
 
 ; 315
 #;(claim both-left
-  (-> Two Two
+  (→ Two Two
     Two))
 #;(define both-left
   (λ (a b)
@@ -262,9 +262,9 @@
 ; 315
 #;(claim step-taut
   (Π ((n-1 Nat))
-    (-> (-> (Two-Fun n-1)
+    (→ (→ (Two-Fun n-1)
           Two)
-      (-> (Two-Fun (add1 n-1))
+      (→ (Two-Fun (add1 n-1))
         Two))))
 #;(define step-taut
   (λ (n-1 taut_n-1)
@@ -286,13 +286,13 @@
 ; 315
 #;(claim taut
   (Π ((n Nat))
-    (-> (Two-Fun n)
+    (→ (Two-Fun n)
       Two)))
 #;(define taut
   (λ (n)
     (ind-Nat n
       (λ (k)
-        (-> (Two-Fun k)
+        (→ (Two-Fun k)
             Two))
       (λ (x)
         x)

@@ -1,7 +1,7 @@
 #lang pie
 
 (claim +
-  (-> Nat Nat
+  (→ Nat Nat
     Nat))
 (define +
   (λ (lhs rhs)
@@ -11,7 +11,7 @@
         (add1 n)))))
 
 (claim incr
-  (-> Nat
+  (→ Nat
     Nat))
 (define incr
   (λ (n)
@@ -26,7 +26,7 @@
 ;; If target is an                                                              ;;
 ;;   (= X from to),                                                             ;;
 ;; mot is an                                                                    ;;
-;;   (-> X                                                                      ;;
+;;   (→ X                                                                      ;;
 ;;     U),                                                                      ;;
 ;; and base is a                                                                ;;
 ;;   (mot from)                                                                 ;;
@@ -39,7 +39,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (claim mot-step-incr=add1
-  (-> Nat Nat
+  (→ Nat Nat
     U))
 (define mot-step-incr=add1
   (λ (n-1 k)
@@ -51,7 +51,7 @@
 
 ; 203:21
 (claim double
-  (-> Nat
+  (→ Nat
     Nat))
 (define double
   (λ (n)
@@ -63,7 +63,7 @@
 
 ; 203:22
 (claim twice
-  (-> Nat
+  (→ Nat
     Nat))
 (define twice
   (λ (n)
@@ -71,7 +71,7 @@
 
 ; 205:31
 (claim mot-add1+=+add1
-  (-> Nat Nat
+  (→ Nat Nat
     U))
 (define mot-add1+=+add1
   (λ (j k)
@@ -83,7 +83,7 @@
 (claim step-add1+=+add1
   (Π ((j Nat)
        (n-1 Nat))
-    (-> (mot-add1+=+add1 j n-1)
+    (→ (mot-add1+=+add1 j n-1)
         (mot-add1+=+add1 j (add1 n-1)))))
 (define step-add1+=+add1
   (λ (j n-1)
@@ -106,7 +106,7 @@
 
 ; 208:39
 (claim mot-twice=double
-  (-> Nat
+  (→ Nat
     U))
 (define mot-twice=double
   (λ (n)
@@ -126,7 +126,7 @@
 
 ; 211:48
 (claim mot-step-twice=double
-  (-> Nat Nat
+  (→ Nat Nat
     U))
 (define mot-step-twice=double
   (λ (n-1 k)
@@ -137,7 +137,7 @@
 ; 212:51
 (claim step-twice=double
   (Π ((n-1 Nat))
-    (-> (mot-twice=double n-1)
+    (→ (mot-twice=double n-1)
       (mot-twice=double (add1 n-1)))))
 (define step-twice=double
   (λ (n-1)
@@ -174,7 +174,7 @@
 ; 214:59
 (claim base-double-Vec
   (Π ((E U))
-    (-> (Vec E zero)
+    (→ (Vec E zero)
       (Vec E (double zero)))))
 (define base-double-Vec
   (λ (E)
@@ -183,20 +183,20 @@
 
 ; 214:60
 (claim mot-double-Vec
-  (-> U Nat
+  (→ U Nat
     U))
 (define mot-double-Vec
   (λ (E k)
-    (-> (Vec E k)
+    (→ (Vec E k)
       (Vec E (double k)))))
 
 ; 215:61
 (claim step-double-Vec
   (Π ((E U)
        (l-1 Nat))
-    (-> (-> (Vec E l-1)
+    (→ (→ (Vec E l-1)
           (Vec E (double l-1)))
-        (-> (Vec E (add1 l-1))
+        (→ (Vec E (add1 l-1))
           (Vec E (double (add1 l-1)))))))
 (define step-double-Vec
   (λ (E l-1)
@@ -210,7 +210,7 @@
 (claim double-Vec
   (Π ((E U)
        (l Nat))
-    (-> (Vec E l)
+    (→ (Vec E l)
       (Vec E (double l)))))
 (define double-Vec
   (λ (E l)
@@ -232,7 +232,7 @@
 (claim twice-Vec
   (Π ((E U)
        (l Nat))
-    (-> (Vec E l)
+    (→ (Vec E l)
       (Vec E (twice l)))))
 (define twice-Vec
   (λ (E l)

@@ -17,8 +17,8 @@
   (Π ((A U)
        (D U)
        (X U))
-    (-> (Pair A D)
-        (-> A D
+    (→ (Pair A D)
+        (→ A D
           X)
       X)))
 (define elim-Pair_1
@@ -28,7 +28,7 @@
 
 ; 103:42
 (claim kar_1
-  (-> (Pair Nat Nat)
+  (→ (Pair Nat Nat)
     Nat))
 (define kar_1
   (λ (p)
@@ -41,7 +41,7 @@
 
 ; 103:42
 (claim kdr_1
-  (-> (Pair Nat Nat)
+  (→ (Pair Nat Nat)
     Nat))
 (define kdr_1
   (λ (p)
@@ -54,7 +54,7 @@
 
 ; 104:43
 (claim swap
-  (-> (Pair Nat Atom)
+  (→ (Pair Nat Atom)
     (Pair Atom Nat)))
 (define swap
   (λ (p)
@@ -68,7 +68,7 @@
 ; 104:43
 (claim twin
   (Π ((T U))
-    (-> T
+    (→ T
       (Pair T T))))
 (define twin
   (λ (T)

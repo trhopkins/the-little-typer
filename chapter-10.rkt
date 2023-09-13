@@ -35,7 +35,7 @@
 
 ; 233:47
 (claim mot-replicate
-  (-> U Nat
+  (→ U Nat
     U))
 (define mot-replicate
   (λ (E k)
@@ -46,7 +46,7 @@
   (Π ((E U)
        (e E)
        (l-1 Nat))
-    (-> (mot-replicate E l-1)
+    (→ (mot-replicate E l-1)
       (mot-replicate E (add1 l-1)))))
 (define step-replicate
   (λ (E e l-1)
@@ -57,7 +57,7 @@
 (claim replicate
   (Π ((E U)
        (l Nat))
-    (-> E
+    (→ E
       (Vec E l))))
 (define replicate
   (λ (E l)
@@ -72,12 +72,12 @@
 ;;                                                                              ;;
 ;; If target is a (List E),                                                     ;;
 ;; mot is an                                                                    ;;
-;;   (-> (List E)                                                               ;;
+;;   (→ (List E)                                                               ;;
 ;;     U),                                                                      ;;
 ;; base is a (mot nil), and step is a                                           ;;
 ;;   (Π ((e E)                                                                 ;;
 ;;        (es (List E)))                                                        ;;
-;;     (-> (mot es)                                                             ;;
+;;     (→ (mot es)                                                             ;;
 ;;       (mot (:: e es))))                                                      ;;
 ;; then                                                                         ;;
 ;;   (ind-List target                                                           ;;
@@ -115,36 +115,36 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; 240:70
-(claim mot-list->vec
+(claim mot-list→vec
   (Π ((E U))
-    (-> (List E)
+    (→ (List E)
       U)))
-(define mot-list->vec
+(define mot-list→vec
   (λ (E)
     (λ (es)
       (Vec E (length E es)))))
 
 ; 240:72
-(claim step-list->vec
+(claim step-list→vec
   (Π ((E U)
        (e E)
        (es (List E)))
-    (-> (mot-list->vec E es)
-      (mot-list->vec E (:: e es)))))
-(define step-list->vec
+    (→ (mot-list→vec E es)
+      (mot-list→vec E (:: e es)))))
+(define step-list→vec
   (λ (E e es)
-    (λ (list->vec_es)
-      (vec:: e list->vec_es))))
+    (λ (list→vec_es)
+      (vec:: e list→vec_es))))
 
 ; 242:77
-(claim list->vec
+(claim list→vec
   (Π ((E U)
        (es (List E)))
     (Vec E (length E es))))
-(define list->vec
+(define list→vec
   (λ (E es)
     (ind-List es
-      (mot-list->vec E)
+      (mot-list→vec E)
       vecnil
-      (step-list->vec E))))
+      (step-list→vec E))))
 

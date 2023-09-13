@@ -3,7 +3,7 @@
 ;; PREREQUISITES
 
 (claim +
-  (-> Nat Nat
+  (→ Nat Nat
     Nat))
 (define +
   (λ (lhs rhs)
@@ -13,7 +13,7 @@
         (add1 n)))))
 
 (claim double
-  (-> Nat
+  (→ Nat
     Nat))
 (define double
   (λ (n)
@@ -26,7 +26,7 @@
 
 ; 265:5
 (claim Even
-  (-> Nat
+  (→ Nat
     U))
 (define Even
   (λ (n)
@@ -50,7 +50,7 @@
 ; 270:26
 (claim +-two-even
   (Π ((n Nat))
-    (-> (Even n)
+    (→ (Even n)
       (Even (+ 2 n)))))
 (define +-two-even
   (λ (n)
@@ -72,7 +72,7 @@
 
 ; 271:32
 (claim Odd
-  (-> Nat
+  (→ Nat
     U))
 (define Odd
   (λ (n)
@@ -94,29 +94,29 @@
   (cons 6 (same 13)))
 
 ; 273:44
-(claim add1-even->odd
+(claim add1-even→odd
   (Π ((n Nat))
-    (-> (Even n)
+    (→ (Even n)
       (Odd (add1 n)))))
-(define add1-even->odd
+(define add1-even→odd
   (λ (n)
     (λ (even_n)
       (cons (car even_n)
         (cong (cdr even_n) (+ 1))))))
 
 ; 276:56
-(claim add1-odd->even
+(claim add1-odd→even
   (Π ((n Nat))
-    (-> (Odd n)
+    (→ (Odd n)
       (Even (add1 n)))))
-(define add1-odd->even
+(define add1-odd→even
   (λ (n)
     (λ (odd_n)
       (cons (add1 (car odd_n))
         (cong (cdr odd_n) (+ 1))))))
 
 (claim repeat
-  (-> (-> Nat
+  (→ (→ Nat
         Nat)
       Nat
     Nat))
@@ -129,7 +129,7 @@
 
 ; Behold! Ackermann!
 (claim ackermann
-  (-> Nat Nat
+  (→ Nat Nat
     Nat))
 (define ackermann
   (λ (n)

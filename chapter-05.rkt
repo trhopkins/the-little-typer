@@ -58,7 +58,7 @@
 ;; The Law of rec-List                                                          ;;
 ;;                                                                              ;;
 ;; If target is a (List E), base is an X, and step is an                        ;;
-;;   (-> E (List E) X                                                           ;;
+;;   (→ E (List E) X                                                           ;;
 ;;     X),                                                                      ;;
 ;; then                                                                         ;;
 ;;   (rec-List target                                                           ;;
@@ -92,7 +92,7 @@
 ; 118:38
 (claim step-length
   (Π ((E U))
-    (-> E (List E) Nat
+    (→ E (List E) Nat
       Nat)))
 (define step-length
   (λ (E)
@@ -102,7 +102,7 @@
 ; 119:39
 (claim length
   (Π ((E U))
-    (-> (List E)
+    (→ (List E)
       Nat)))
 (define length
   (λ (E)
@@ -113,7 +113,7 @@
 
 ; 119:42
 (claim length-Atom
-  (-> (List Atom)
+  (→ (List Atom)
     Nat))
 (define length-Atom
   (length Atom))
@@ -127,7 +127,7 @@
 ; 122:54
 (claim step-append
   (Π ((E U))
-    (-> E (List E) (List E)
+    (→ E (List E) (List E)
       (List E))))
 (define step-append
   (λ (E)
@@ -137,7 +137,7 @@
 ; 122:54
 (claim append
   (Π ((E U))
-    (-> (List E) (List E)
+    (→ (List E) (List E)
       (List E))))
 (define append
   (λ (E)
@@ -149,7 +149,7 @@
 ; 124:62
 (claim snoc
   (Π ((E U))
-    (-> (List E) E
+    (→ (List E) E
       (List E))))
 (define snoc
   (λ (E)
@@ -161,7 +161,7 @@
 ; 125:66
 (claim step-reverse
   (Π ((E U))
-    (-> E (List E) (List E)
+    (→ E (List E) (List E)
       (List E))))
 (define step-reverse
   (λ (E)
@@ -171,7 +171,7 @@
 ; 125:66
 (claim reverse
   (Π ((E U))
-    (-> (List E)
+    (→ (List E)
       (List E))))
 (define reverse
   (λ (E)

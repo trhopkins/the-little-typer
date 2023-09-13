@@ -17,7 +17,7 @@
 
 ; 145:13
 (claim mot-peas
-  (-> Nat
+  (→ Nat
     U))
 (define mot-peas
   (λ (k)
@@ -26,7 +26,7 @@
 ; 147:20
 (claim step-peas
   (Π ((l-1 Nat))
-    (-> (mot-peas l-1)
+    (→ (mot-peas l-1)
       (mot-peas (add1 l-1)))))
 (define step-peas
   (λ (l-1)
@@ -37,11 +37,11 @@
 ;; The Law of ind-Nat                                                           ;;
 ;;                                                                              ;;
 ;; If target is a Nat, mot is an                                                ;;
-;;   (-> Nat                                                                    ;;
+;;   (→ Nat                                                                    ;;
 ;;     U),                                                                      ;;
 ;; base is a (mot zero), and step is a                                          ;;
 ;;   (Π ((n-1 Nat))                                                            ;;
-;;     (-> (mot n-1)                                                            ;;
+;;     (→ (mot n-1)                                                            ;;
 ;;      (mot (add1 n-1)))),                                                     ;;
 ;; then                                                                         ;;
 ;;   (ind-Nat target                                                            ;;
@@ -101,9 +101,9 @@
 ; 150:27
 (claim also-rec-Nat
   (Π ((X U))
-    (-> Nat
+    (→ Nat
         X
-        (-> Nat X
+        (→ Nat X
           X)
       X)))
 (define also-rec-Nat
@@ -118,7 +118,7 @@
 ; 152:34
 (claim base-last
   (Π ((E U))
-    (-> (Vec E 1)
+    (→ (Vec E 1)
       E)))
 (define base-last
   (λ (E)
@@ -133,11 +133,11 @@
 
 ; 153:40
 (claim mot-last
-  (-> U Nat
+  (→ U Nat
     U))
 (define mot-last
   (λ (E k)
-    (-> (Vec E (add1 k))
+    (→ (Vec E (add1 k))
       E)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -147,7 +147,7 @@
 ;; whose type is the motive applied to n. The type of the answer from the step  ;;
 ;; the motive applied to (add1 n). The step's type is:                          ;;
 ;;   (Π ((n Nat))                                                              ;;
-;;     (-> (mot n)                                                              ;;
+;;     (→ (mot n)                                                              ;;
 ;;       (mot (add1 n))))                                                       ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -155,7 +155,7 @@
 (claim step-last
   (Π ((E U)
        (l-1 Nat))
-    (-> (mot-last E l-1)
+    (→ (mot-last E l-1)
       (mot-last E (add1 l-1)))))
 (define step-last
   (λ (E l-1)
@@ -167,7 +167,7 @@
 (claim last
   (Π ((E U)
        (l Nat))
-    (-> (Vec E (add1 l))
+    (→ (Vec E (add1 l))
       E)))
 (define last
   (λ (E l)
@@ -179,7 +179,7 @@
 ; 159:61
 (claim base-drop-last
   (Π ((E U))
-    (-> (Vec E 1)
+    (→ (Vec E 1)
       (Vec E 0))))
 (define base-drop-last
   (λ (E)
@@ -196,18 +196,18 @@
 
 ; 160:64
 (claim mot-drop-last
-  (-> U Nat
+  (→ U Nat
     U))
 (define mot-drop-last
   (λ (E l)
-    (-> (Vec E (add1 l))
+    (→ (Vec E (add1 l))
       (Vec E l))))
 
 ; 161:67
 (claim step-drop-last
   (Π ((E U)
        (l Nat))
-    (-> (mot-drop-last E l)
+    (→ (mot-drop-last E l)
       (mot-drop-last E (add1 l)))))
 (define step-drop-last
   (λ (E l)
@@ -220,7 +220,7 @@
 (claim drop-last
   (Π ((E U)
        (l Nat))
-    (-> (Vec E (add1 l))
+    (→ (Vec E (add1 l))
       (Vec E l))))
 (define drop-last
   (λ (E l)

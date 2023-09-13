@@ -23,7 +23,7 @@
 ; 134:24
 (claim first-of-one
   (Π ((E U))
-    (-> (Vec E 1)
+    (→ (Vec E 1)
       E)))
 (define first-of-one
   (λ (E)
@@ -33,7 +33,7 @@
 ; 134:27
 (claim first-of-two
   (Π ((E U))
-    (-> (Vec E 2)
+    (→ (Vec E 2)
       E)))
 (define first-of-two
   (λ (E)
@@ -44,7 +44,7 @@
 (claim first
   (Π ((E U)
        (l Nat))
-    (-> (Vec E (add1 l))
+    (→ (Vec E (add1 l))
       E)))
 (define first
   (λ (E l)
@@ -68,10 +68,10 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; -> and Π                                                                    ;;
+;; → and Π                                                                    ;;
 ;;                                                                              ;;
 ;; The type                                                                     ;;
-;;   (-> Y                                                                      ;;
+;;   (→ Y                                                                      ;;
 ;;     X)                                                                       ;;
 ;; is a shorter way of saying                                                   ;;
 ;;   (Π ((y Y))                                                                ;;
@@ -126,7 +126,7 @@
 (claim rest
   (Π ((E U)
        (l Nat))
-    (-> (Vec E (add1 l))
+    (→ (Vec E (add1 l))
       (Vec E l))))
 (define rest
   (λ (E l)

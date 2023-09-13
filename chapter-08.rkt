@@ -1,12 +1,12 @@
 #lang pie
 
 ; PREREQUISITE
-(claim + (-> Nat Nat Nat))
+(claim + (→ Nat Nat Nat))
 (define + (λ (lhs rhs) (iter-Nat lhs rhs (λ (n) (add1 n)))))
 
 ; 171:5
 (claim incr
-  (-> Nat
+  (→ Nat
     Nat))
 (define incr
   (λ (n)
@@ -60,7 +60,7 @@
 
 ; 185:60
 (claim mot-incr=add1
-  (-> Nat
+  (→ Nat
     U))
 (define mot-incr=add1
   (λ (n)
@@ -70,7 +70,7 @@
 ;; "If" and "Then" as Types                                                     ;;
 ;;                                                                              ;;
 ;; The expression                                                               ;;
-;;   (-> X                                                                      ;;
+;;   (→ X                                                                      ;;
 ;;     Y)                                                                       ;;
 ;; can be read as the statement,                                                ;;
 ;;   "if X then Y."                                                             ;;
@@ -89,7 +89,7 @@
 ;; The Law of cong                                                              ;;
 ;;                                                                              ;;
 ;; If f is an                                                                   ;;
-;;   (-> X                                                                      ;;
+;;   (→ X                                                                      ;;
 ;;     Y)                                                                       ;;
 ;; and target is an (= X from to),                                              ;;
 ;; then (cong target f) is an (= Y (f from) (f to)).                            ;;
@@ -98,7 +98,7 @@
 ; 191:80
 (claim step-incr=add1
   (Π ((n-1 Nat))
-    (-> (= Nat
+    (→ (= Nat
           (incr n-1)
           (add1 n-1))
       (= Nat
@@ -124,7 +124,7 @@
 ;; The Commandment of cong                                                      ;;
 ;;                                                                              ;;
 ;; If x is an X, and f is an                                                    ;;
-;;   (-> X                                                                      ;;
+;;   (→ X                                                                      ;;
 ;;     Y),                                                                      ;;
 ;; then (cong (same x) f) is the same                                           ;;
 ;;   (= Y (f x) (f x))                                                          ;;
@@ -134,7 +134,7 @@
 
 ; 195:90
 (claim sandwich
-  (-> Atom
+  (→ Atom
     Atom))
 (define sandwich
   (λ (which-sandwich)

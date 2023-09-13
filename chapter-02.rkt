@@ -1,7 +1,7 @@
 #lang pie
 
 ;; PREREQUISITES
-(claim + (-> Nat Nat Nat))
+(claim + (→ Nat Nat Nat))
 (define + (λ (lhs rhs) (iter-Nat lhs rhs (λ (n-1) (add1 n-1)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -21,7 +21,7 @@
 ;; The Initial Law of Application                                               ;;
 ;;                                                                              ;;
 ;; If f is an                                                                   ;;
-;;   (-> Y                                                                      ;;
+;;   (→ Y                                                                      ;;
 ;;     X)                                                                       ;;
 ;; and arg is a Y, then                                                         ;;
 ;;   (f arg)                                                                    ;;
@@ -39,10 +39,10 @@
 ;; The Initial Second Commandment of λ                                     ;;
 ;;                                                                              ;;
 ;; If f is an                                                                   ;;
-;;   (-> Y                                                                      ;;
+;;   (→ Y                                                                      ;;
 ;;     X),                                                                      ;;
 ;; then f is the same                                                           ;;
-;;   (-> Y                                                                      ;;
+;;   (→ Y                                                                      ;;
 ;;     X)                                                                       ;;
 ;; as                                                                           ;;
 ;;   (λ (y)                                                                ;;
@@ -118,7 +118,7 @@
 ;; The Law of which-Nat                                                         ;;
 ;;                                                                              ;;
 ;; If target is a Nat, base is an X, and step is an                             ;;
-;;   (-> Nat                                                                    ;;
+;;   (→ Nat                                                                    ;;
 ;;     X),                                                                      ;;
 ;; then                                                                         ;;
 ;;   (which-Nat target                                                          ;;
@@ -146,7 +146,7 @@
 
 ; 49:52
 (claim gauss
-  (-> Nat
+  (→ Nat
     Nat))
 
 ; 51:59
@@ -159,7 +159,7 @@
 
 ; 52:64
 #;(claim forever
-    (-> Nat
+    (→ Nat
       Atom))
 #;(define forever
     (λ (and-ever)
@@ -197,12 +197,12 @@
 (claim Pear-maker
   U)
 (define Pear-maker
-  (-> Nat Nat
+  (→ Nat Nat
     Pear))
 
 ; 58:93
 (claim elim-Pear
-  (-> Pear Pear-maker
+  (→ Pear Pear-maker
     Pear))
 (define elim-Pear
   (λ (pear maker)
@@ -210,14 +210,14 @@
 
 ; 58:93
 #;(claim elim-Pear
-    (-> (Pair Nat Nat)
-        (-> Nat Nat
+    (→ (Pair Nat Nat)
+        (→ Nat Nat
           (Pair Nat Nat))
       (Pair Nat Nat)))
 
 ; 60:100
 (claim pearwise-+
-  (-> Pear Pear
+  (→ Pear Pear
     Pear))
 (define pearwise-+
   (λ (anjou bosc)
